@@ -1,41 +1,65 @@
 package gl_1;
 
+import glm.Glm;
 import glm.mat._4.Mat4;
 import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
-import glm.Glm;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
-import static com.jogamp.opengl.util.ImmModeSink.GL_POLYGON;
-import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
-import static javax.media.opengl.GL.GL_TRIANGLES;
-
-public class Line implements GLEventListener {
+public class Home implements GLEventListener {
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glBegin (GL2.GL_LINES);//static field
-        gl.glVertex3f(0.50f,-0.50f,0);
-        gl.glVertex3f(-0.50f,0.50f,0);
+        //drawing top
+        gl.glBegin ( GL2.GL_LINES );
+        gl.glVertex3f( -0.3f, 0.3f, 0 );
+        gl.glVertex3f( 0.3f,0.3f, 0 );
         gl.glEnd();
-
-//        gl.glBegin(GL_TRIANGLES);
-//        // Prvi trokut:
-//        gl.glColor3f(1.0f, 0.0f, 0.0f);
-//        gl.glVertex3f(-0.9f, -0.9f, -0.9f);
-//        gl.glVertex3f(0.9f, -0.9f, -0.9f);
-//        gl.glVertex3f(0.0f, 0.9f, 0.9f);
-//
-//        // Drugi trokut:
-//        gl.glColor3f(0.0f, 1.0f, 0.0f);
-//        gl.glVertex3f(-0.9f, 0.9f, -0.9f);
-//        gl.glVertex3f(0.9f, 0.9f, -0.9f);
-//        gl.glVertex3f(0.0f, -0.9f, 0.9f);
-//        gl.glEnd();
-//
+        //drawing bottom
+        gl.glBegin( GL2.GL_LINES );
+        gl.glVertex3f( -0.3f,-0.3f, 0 );
+        gl.glVertex3f( 0.3f,-0.3f, 0 );
+        gl.glEnd();
+        //drawing the right edge
+        gl.glBegin( GL2.GL_LINES );
+        gl.glVertex3f( -0.3f,0.3f, 0 );
+        gl.glVertex3f( -0.3f,-0.3f, 0 );
+        gl.glEnd();
+        //drawing the left edge
+        gl.glBegin( GL2.GL_LINES );
+        gl.glVertex3f( 0.3f,0.3f,0 );
+        gl.glVertex3f( 0.3f,-0.3f,0 );
+        gl.glEnd();
+        //building roof
+        //building lft dia
+        gl.glBegin( GL2.GL_LINES );
+        gl.glVertex3f( 0f,0.6f, 0 );
+        gl.glVertex3f( -0.3f,0.3f, 0 );
+        gl.glEnd();
+        //building rt  dia
+        gl.glBegin( GL2.GL_LINES );
+        gl.glVertex3f( 0f,0.6f, 0 );
+        gl.glVertex3f( 0.3f,0.3f, 0 );
+        gl.glEnd();
+        //building door
+        //drawing top
+        gl.glBegin ( GL2.GL_LINES );
+        gl.glVertex3f( -0.05f, 0.05f, 0 );
+        gl.glVertex3f( 0.05f, 0.05f, 0 );
+        gl.glEnd();
+        //drawing the left edge
+        gl.glBegin ( GL2.GL_LINES );
+        gl.glVertex3f( -0.05f, 0.05f, 0 );
+        gl.glVertex3f( -0.05f, -0.3f, 0 );
+        gl.glEnd();
+        //drawing the right edge
+        gl.glBegin ( GL2.GL_LINES );
+        gl.glVertex3f( 0.05f, 0.05f, 0 );
+        gl.glVertex3f( 0.05f, -0.3f, 0 );
+        gl.glEnd();
 
         gl.glFlush();
     }
@@ -71,7 +95,7 @@ public class Line implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
-        Line l = new Line();
+        Home l = new Home();
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(400, 400);
         //creating frame

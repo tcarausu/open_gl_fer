@@ -1,9 +1,9 @@
 package gl_1;
 
+import glm.Glm;
 import glm.mat._4.Mat4;
 import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
-import glm.Glm;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
@@ -11,15 +11,25 @@ import javax.swing.*;
 
 import static com.jogamp.opengl.util.ImmModeSink.GL_POLYGON;
 import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
-import static javax.media.opengl.GL.GL_TRIANGLES;
 
-public class Line implements GLEventListener {
+public class Shaded_Square implements GLEventListener {
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glBegin (GL2.GL_LINES);//static field
-        gl.glVertex3f(0.50f,-0.50f,0);
-        gl.glVertex3f(-0.50f,0.50f,0);
+        gl.glBegin(GL2.GL_LINES);//static field
+        gl.glVertex3f(0.50f, -0.50f, 0);
+        gl.glVertex3f(-0.50f, 0.50f, 0);
+        gl.glEnd();
+
+        gl.glClear(GL_COLOR_BUFFER_BIT);
+        gl.glLoadIdentity();
+        gl.glOrtho(0, 4, 0, 4, -1, 1);
+        gl.glBegin(GL_POLYGON);
+        gl.glVertex2i(1, 1);
+        gl.glVertex2i(3, 1);
+        gl.glColor3f(0.5f, 0, 0.5f);
+        gl.glVertex2i(3, 3);
+        gl.glVertex2i(1, 3);
         gl.glEnd();
 
 //        gl.glBegin(GL_TRIANGLES);
@@ -71,7 +81,7 @@ public class Line implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
-        Line l = new Line();
+        Shaded_Square l = new Shaded_Square();
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(400, 400);
         //creating frame

@@ -1,41 +1,35 @@
 package gl_1;
 
+import glm.Glm;
 import glm.mat._4.Mat4;
 import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
-import glm.Glm;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
-import static com.jogamp.opengl.util.ImmModeSink.GL_POLYGON;
-import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
 import static javax.media.opengl.GL.GL_TRIANGLES;
 
-public class Line implements GLEventListener {
+public class Overlapping_squares implements GLEventListener {
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glBegin (GL2.GL_LINES);//static field
-        gl.glVertex3f(0.50f,-0.50f,0);
-        gl.glVertex3f(-0.50f,0.50f,0);
+
+        gl.glBegin(GL_TRIANGLES);
+        // Prvi trokut:
+        gl.glColor3f(1.0f, 0.0f, 0.0f);
+        gl.glVertex3f(-0.9f, -0.9f, -0.9f);
+        gl.glVertex3f(0.9f, -0.9f, -0.9f);
+        gl.glVertex3f(0.0f, 0.9f, 0.9f);
+
+        // Drugi trokut:
+        gl.glColor3f(0.0f, 1.0f, 0.0f);
+        gl.glVertex3f(-0.9f, 0.9f, -0.9f);
+        gl.glVertex3f(0.9f, 0.9f, -0.9f);
+        gl.glVertex3f(0.0f, -0.9f, 0.9f);
         gl.glEnd();
 
-//        gl.glBegin(GL_TRIANGLES);
-//        // Prvi trokut:
-//        gl.glColor3f(1.0f, 0.0f, 0.0f);
-//        gl.glVertex3f(-0.9f, -0.9f, -0.9f);
-//        gl.glVertex3f(0.9f, -0.9f, -0.9f);
-//        gl.glVertex3f(0.0f, 0.9f, 0.9f);
-//
-//        // Drugi trokut:
-//        gl.glColor3f(0.0f, 1.0f, 0.0f);
-//        gl.glVertex3f(-0.9f, 0.9f, -0.9f);
-//        gl.glVertex3f(0.9f, 0.9f, -0.9f);
-//        gl.glVertex3f(0.0f, -0.9f, 0.9f);
-//        gl.glEnd();
-//
 
         gl.glFlush();
     }
@@ -71,7 +65,7 @@ public class Line implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
-        Line l = new Line();
+        Overlapping_squares l = new Overlapping_squares();
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(400, 400);
         //creating frame

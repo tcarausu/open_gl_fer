@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5281d72f-381b-45ad-a682-7117441b904d" name="Default Changelist" comment="" />
+    <list default="true" id="5281d72f-381b-45ad-a682-7117441b904d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gl_1/Overlapping_squares.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gl_1/Shaded_Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_1/Line.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +22,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -22,6 +33,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1ZUVw42xfjmr7mUmJORFC85Eyxz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -29,27 +43,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/io/github/java-graphics/glm/1.0.1/glm-1.0.1.jar!/" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager" selected="JUnit.Mat4Test">
-    <configuration name="HelloWorldGL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gl_1.HelloWorldGL" />
-      <module name="open_gl" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gl_1.GLU" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ICGVector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gl_1.ICGVector" />
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="gl_1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Home">
+    <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gl_1.Home" />
       <module name="open_gl" />
       <extension name="coverage">
         <pattern>
@@ -74,6 +81,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Overlapping_squares" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gl_1.Overlapping_squares" />
+      <module name="open_gl" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gl_1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Shaded_Square" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gl_1.Shaded_Square" />
+      <module name="open_gl" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gl_1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Triangle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gl_1.Triangle" />
       <module name="open_gl" />
@@ -87,28 +120,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Mat4Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="open_gl" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gl_1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="gl_1" />
-      <option name="MAIN_CLASS_NAME" value="gl_1.Mat4Test" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Mat4Test" />
-        <item itemvalue="Application.Line" />
+        <item itemvalue="Application.Home" />
         <item itemvalue="Application.Triangle" />
-        <item itemvalue="Application.ICGVector" />
-        <item itemvalue="Application.HelloWorldGL" />
+        <item itemvalue="Application.Shaded_Square" />
+        <item itemvalue="Application.Line" />
+        <item itemvalue="Application.Overlapping_squares" />
       </list>
     </recent_temporary>
   </component>
@@ -131,7 +149,9 @@
       <workItem from="1585155555726" duration="888000" />
       <workItem from="1585228739565" duration="97000" />
       <workItem from="1585579526588" duration="1290000" />
-      <workItem from="1585654022201" duration="2210000" />
+      <workItem from="1585654022201" duration="2955000" />
+      <workItem from="1585657558881" duration="626000" />
+      <workItem from="1585658292169" duration="958000" />
     </task>
     <servers />
   </component>
@@ -151,29 +171,45 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1585067688149" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1585655961048">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1585659059451">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1585655961048" />
-    <state width="1493" height="226" key="GridCell.Tab.0.bottom" timestamp="1585656515990">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1585659059451" />
+    <state width="1493" height="226" key="GridCell.Tab.0.bottom" timestamp="1585659287162">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585656515990" />
-    <state width="1493" height="226" key="GridCell.Tab.0.center" timestamp="1585656515990">
+    <state width="1493" height="226" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585659287162" />
+    <state width="1493" height="226" key="GridCell.Tab.0.center" timestamp="1585659287162">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585656515990" />
-    <state width="1493" height="226" key="GridCell.Tab.0.left" timestamp="1585656515989">
+    <state width="1493" height="226" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585659287162" />
+    <state width="1493" height="226" key="GridCell.Tab.0.left" timestamp="1585659287162">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585656515989" />
-    <state width="1493" height="226" key="GridCell.Tab.0.right" timestamp="1585656515990">
+    <state width="1493" height="226" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585659287162" />
+    <state width="1493" height="226" key="GridCell.Tab.0.right" timestamp="1585659287162">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585656515990" />
-    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1585655855670">
+    <state width="1493" height="226" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585659287162" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1585658927026">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1585655855670" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585658927026" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1585658927026">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1585658927026" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1585658927026">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1585658927026" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1585658927026">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1585658927026" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1585657406077">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1585657406077" />
   </component>
 </project>
