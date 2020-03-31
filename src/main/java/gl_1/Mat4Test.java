@@ -240,7 +240,11 @@ public class Mat4Test {
         float x = 1f;
         float y = 2f;
         float z = 3f;
-        Mat4 expResult = new Mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1);
+        Mat4 expResult = new Mat4(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                x, y, z, 1);
         Mat4 result = new Mat4().translate(x, y, z);
         assertTrue(result.equals(expResult));
     }

@@ -50,6 +50,13 @@
             <artifactId>joou</artifactId>
             <version>0.9.1</version>
         </dependency>
+        <!--newt-->
+        <!-- https://mvnrepository.com/artifact/org.jogamp.jogl/newt -->
+        <dependency>
+            <groupId>org.jogamp.jogl</groupId>
+            <artifactId>newt</artifactId>
+            <version>2.0.2</version>
+        </dependency>
         <!--joal-->
         <dependency>
             <groupId>org.jogamp.joal</groupId>
