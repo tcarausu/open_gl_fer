@@ -14,51 +14,51 @@ public class Home implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
         //drawing top
-        gl.glBegin ( GL2.GL_LINES );
-        gl.glVertex3f( -0.3f, 0.3f, 0 );
-        gl.glVertex3f( 0.3f,0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(-0.3f, 0.3f, 0);
+        gl.glVertex3f(0.3f, 0.3f, 0);
         gl.glEnd();
         //drawing bottom
-        gl.glBegin( GL2.GL_LINES );
-        gl.glVertex3f( -0.3f,-0.3f, 0 );
-        gl.glVertex3f( 0.3f,-0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(-0.3f, -0.3f, 0);
+        gl.glVertex3f(0.3f, -0.3f, 0);
         gl.glEnd();
         //drawing the right edge
-        gl.glBegin( GL2.GL_LINES );
-        gl.glVertex3f( -0.3f,0.3f, 0 );
-        gl.glVertex3f( -0.3f,-0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(-0.3f, 0.3f, 0);
+        gl.glVertex3f(-0.3f, -0.3f, 0);
         gl.glEnd();
         //drawing the left edge
-        gl.glBegin( GL2.GL_LINES );
-        gl.glVertex3f( 0.3f,0.3f,0 );
-        gl.glVertex3f( 0.3f,-0.3f,0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(0.3f, 0.3f, 0);
+        gl.glVertex3f(0.3f, -0.3f, 0);
         gl.glEnd();
         //building roof
         //building lft dia
-        gl.glBegin( GL2.GL_LINES );
-        gl.glVertex3f( 0f,0.6f, 0 );
-        gl.glVertex3f( -0.3f,0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(0f, 0.6f, 0);
+        gl.glVertex3f(-0.3f, 0.3f, 0);
         gl.glEnd();
         //building rt  dia
-        gl.glBegin( GL2.GL_LINES );
-        gl.glVertex3f( 0f,0.6f, 0 );
-        gl.glVertex3f( 0.3f,0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(0f, 0.6f, 0);
+        gl.glVertex3f(0.3f, 0.3f, 0);
         gl.glEnd();
         //building door
         //drawing top
-        gl.glBegin ( GL2.GL_LINES );
-        gl.glVertex3f( -0.05f, 0.05f, 0 );
-        gl.glVertex3f( 0.05f, 0.05f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(-0.05f, 0.05f, 0);
+        gl.glVertex3f(0.05f, 0.05f, 0);
         gl.glEnd();
         //drawing the left edge
-        gl.glBegin ( GL2.GL_LINES );
-        gl.glVertex3f( -0.05f, 0.05f, 0 );
-        gl.glVertex3f( -0.05f, -0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(-0.05f, 0.05f, 0);
+        gl.glVertex3f(-0.05f, -0.3f, 0);
         gl.glEnd();
         //drawing the right edge
-        gl.glBegin ( GL2.GL_LINES );
-        gl.glVertex3f( 0.05f, 0.05f, 0 );
-        gl.glVertex3f( 0.05f, -0.3f, 0 );
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex3f(0.05f, 0.05f, 0);
+        gl.glVertex3f(0.05f, -0.3f, 0);
         gl.glEnd();
 
         gl.glFlush();
@@ -78,9 +78,10 @@ public class Home implements GLEventListener {
     public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
         // method body
     }
+
     Mat4 camera(float translate, Vec2 rotate) {
 
-        Mat4 projection = Glm.perspective_(45.0f, 4.0f/3.0f, 0.1f, 100.0f);
+        Mat4 projection = Glm.perspective_(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
         Mat4 view = new Mat4(1.0f).translate(new Vec3(0.0f, 0.0f, -translate));
         view.rotate(rotate.y, new Vec3(-1.0f, 0.0f, 0.0f));
         view.rotate(rotate.x, new Vec3(0.0f, 1.0f, 0.0f));
