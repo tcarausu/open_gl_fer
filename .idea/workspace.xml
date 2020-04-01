@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5281d72f-381b-45ad-a682-7117441b904d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_1/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +41,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/io/github/java-graphics/glm/1.0.1/glm-1.0.1.jar!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -150,7 +148,9 @@
       <workItem from="1585657558881" duration="626000" />
       <workItem from="1585658292169" duration="958000" />
       <workItem from="1585660416489" duration="12189000" />
-      <workItem from="1585682018878" duration="165000" />
+      <workItem from="1585682018878" duration="940000" />
+      <workItem from="1585732259469" duration="1551000" />
+      <workItem from="1585738306702" duration="3738000" />
     </task>
     <servers />
   </component>
@@ -174,42 +174,42 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1585067688149" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1585659059451">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1585682382478">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1585659059451" />
-    <state width="1493" height="226" key="GridCell.Tab.0.bottom" timestamp="1585672744625">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1585682382478" />
+    <state width="1493" height="226" key="GridCell.Tab.0.bottom" timestamp="1585742890193">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585672744625" />
-    <state width="1493" height="226" key="GridCell.Tab.0.center" timestamp="1585672744625">
+    <state width="1493" height="226" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585742890193" />
+    <state width="1493" height="226" key="GridCell.Tab.0.center" timestamp="1585742890192">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585672744625" />
-    <state width="1493" height="226" key="GridCell.Tab.0.left" timestamp="1585672744625">
+    <state width="1493" height="226" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1585742890192" />
+    <state width="1493" height="226" key="GridCell.Tab.0.left" timestamp="1585742890192">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585672744625" />
-    <state width="1493" height="226" key="GridCell.Tab.0.right" timestamp="1585672744625">
+    <state width="1493" height="226" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1585742890192" />
+    <state width="1493" height="226" key="GridCell.Tab.0.right" timestamp="1585742890193">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585672744625" />
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1585659847220">
+    <state width="1493" height="226" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1585742890193" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1585742855187">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585659847220" />
-    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1585659847220">
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1585742855187" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1585742855186">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1585659847220" />
-    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1585659847220">
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1585742855186" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1585742855186">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1585659847220" />
-    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1585659847220">
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1585742855186" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1585742855187">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1585659847220" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1585742855187" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1585657406077">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -222,5 +222,16 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1585682155676" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
