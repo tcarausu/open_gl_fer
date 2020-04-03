@@ -1,34 +1,33 @@
-package gl_1;
+package figures;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
-public class Triangle implements GLEventListener {
+public class ICGVector implements GLEventListener {
 
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-//        gl.glBegin(GL2.GL_LINES);
+        gl.glBegin(GL2.GL_LINES);
 
         //drawing the base
         gl.glBegin(GL2.GL_LINES);
-//        gl.glColor3f( 0.0f,1.0f,0.0f );
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
+        gl.glVertex3f(1f, 5f, 0);
+        gl.glVertex3f(-1f, 0f, 0);
         gl.glEnd();
 
-        //drawing the right edge
-        gl.glBegin(GL2.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glEnd();
-
-        //drawing the lft edge
-        gl.glBegin(GL2.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
-        gl.glEnd();
+//        //drawing the right edge
+//        gl.glBegin(GL2.GL_LINES);
+//        gl.glVertex3f(0f, 0.50f, 0);
+//        gl.glVertex3f(-0.50f, -0.50f, 0);
+//        gl.glEnd();
+//
+//        //drawing the lft edge
+//        gl.glBegin(GL2.GL_LINES);
+//        gl.glVertex3f(0f, 0.50f, 0);
+//        gl.glVertex3f(0.50f, -0.50f, 0);
+//        gl.glEnd();
 
         gl.glFlush();
     }
@@ -56,12 +55,12 @@ public class Triangle implements GLEventListener {
 
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
-        Triangle l = new Triangle();
+        ICGVector l = new ICGVector();
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(400, 400);
 
         //creating frame
-        final JFrame frame = new JFrame("Triangle");
+        final JFrame frame = new JFrame("ICG");
 
         //adding canvas to frame
         frame.getContentPane().add(glcanvas);

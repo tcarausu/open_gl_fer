@@ -48,7 +48,7 @@ public class GL_Operations_Lab_Ex1 {
         Mat3 m1 = additionMat(firstMat, secondMat);
         Mat3 trans2 = transposeMatrix(secondMat, new Mat3());
         Mat3 m2 = matrixProduct(firstMat, trans2);
-        //TODO
+
         Mat3 inv2 = inverseMatrix(secondMat, new Mat3());
         Mat3 m3 = matrixProduct(firstMat, inv2);
 
@@ -175,6 +175,7 @@ public class GL_Operations_Lab_Ex1 {
     }
 
     public static Mat3 transposeMatrix(Mat3 mat, Mat3 dest) {
+
         return mat.transpose(dest);
 
 //        dest.set(
@@ -182,13 +183,14 @@ public class GL_Operations_Lab_Ex1 {
 //                mat.m01, mat.m11, mat.m21,
 //                mat.m02, mat.m12, mat.m22);
 //        return dest;
+
     }
 
     public static Mat3 inverseMatrix(Mat3 mat, Mat3 dest) {
         return mat.inverse();
 
 //        float s = 1.0f / determinant(mat);
-//        mat.set((mat.m11 * mat.m22 - mat.m21 * mat.m12) * s,
+//        dest.set((mat.m11 * mat.m22 - mat.m21 * mat.m12) * s,
 //                (mat.m21 * mat.m02 - mat.m01 * mat.m22) * s,
 //                (mat.m01 * mat.m12 - mat.m11 * mat.m02) * s,
 //                (mat.m20 * mat.m12 - mat.m10 * mat.m22) * s,
@@ -197,7 +199,7 @@ public class GL_Operations_Lab_Ex1 {
 //                (mat.m10 * mat.m21 - mat.m20 * mat.m11) * s,
 //                (mat.m20 * mat.m01 - mat.m00 * mat.m21) * s,
 //                (mat.m00 * mat.m11 - mat.m10 * mat.m01) * s);
-//        return mat;
+//        return dest;
     }
 
 //    public static float determinant(Mat3 mat) {
