@@ -8,7 +8,6 @@ public class BarycentricT {
     private static Vec3 B = new Vec3(0, 5, 0);
     private static Vec3 C = new Vec3(0, 0, 1);
 
-    //    private static Point T = new Point(0,0);
     private static Vec3 T = new Vec3(1, 0.125, 0.25);
 
     public static void main(String[] args) {
@@ -18,6 +17,7 @@ public class BarycentricT {
                 A.y, B.y, C.y,
                 A.z, B.z, C.z
         );
+
         Mat3 invertedMatrix = new Mat3();
         matrixToInvert.inverse(invertedMatrix);
 

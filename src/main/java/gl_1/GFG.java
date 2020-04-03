@@ -1,4 +1,4 @@
-package gl_2;
+package gl_1;
 
 // Java Implementation for Gauss-Jordan
 // Elimination Method

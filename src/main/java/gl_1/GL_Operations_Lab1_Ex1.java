@@ -3,7 +3,7 @@ package gl_1;
 import glm.mat._3.Mat3;
 import glm.vec._3.Vec3;
 
-public class GL_Operations_Lab_Ex1 {
+public class GL_Operations_Lab1_Ex1 {
     private static Vec3 i = new Vec3(1, 0, 0);
     private static Vec3 j = new Vec3(0, 1, 0);
     private static Vec3 k = new Vec3(0, 0, 1);

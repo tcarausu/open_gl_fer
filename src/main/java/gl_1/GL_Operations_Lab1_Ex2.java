@@ -1,19 +1,17 @@
-package gl_2;
+package gl_1;
 
 import glm.mat._3.Mat3;
 import glm.vec._3.Vec3;
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static gl_2.GFG.*;
+import static gl_1.GFG.*;
 
-public class GL_2 {
+public class GL_Operations_Lab1_Ex2 {
     private static Mat3 firstMat = new Mat3();
     private static AtomicInteger x = new AtomicInteger();
     private static AtomicInteger y = new AtomicInteger();
