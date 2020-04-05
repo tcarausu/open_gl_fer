@@ -7,13 +7,24 @@ import glm.vec._3.Vec3;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.fixedfunc.GLMatrixFunc;
 import javax.swing.*;
+import java.awt.*;
 
 public class Line implements GLEventListener {
+    static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
 
+//        gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
+//        gl.glLoadIdentity();
+//        gl.glOrtho(0, screenSize.width-1, screenSize.height-1, 0,0,1);
+//        gl.glMatrixMode(GLMatrixFunc.GL_MODELVIEW);
+
+
+//        gl.glViewport(0,0,screenSize.width, screenSize.height);
         gl.glBegin(GL2.GL_LINES);//static field
         gl.glVertex2d(0.50, -0.50);
         gl.glVertex2d(-0.50, 0.50);
@@ -56,7 +67,8 @@ public class Line implements GLEventListener {
         final GLCanvas glcanvas = new GLCanvas(capabilities);
         Line l = new Line();
         glcanvas.addGLEventListener(l);
-        glcanvas.setSize(400, 400);
+        glcanvas.setSize(screenSize.width, screenSize.height);
+//        glcanvas.setSize(1000, 1000);
         //creating frame
         final JFrame frame = new JFrame("straight Line");
         //adding canvas to frame
