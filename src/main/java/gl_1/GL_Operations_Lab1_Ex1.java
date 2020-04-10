@@ -50,6 +50,7 @@ public class GL_Operations_Lab1_Ex1 {
         Mat3 m2 = matrixProduct(firstMat, trans2);
 
         Mat3 inv2 = inverseMatrix(secondMat, new Mat3());
+
         Mat3 m3 = matrixProduct(firstMat, inv2);
 
         System.out.println("\nAdditionOfVectors");
@@ -79,8 +80,13 @@ public class GL_Operations_Lab1_Ex1 {
 
 
         System.out.println("\nMatrix Multiplication with Inverse");
+        System.out.println("First = " + printMatrix(firstMat));
         System.out.println("Inverse2 = " + printMatrix(inv2));
+        System.out.println("SecondMat = " + printMatrix(secondMat));
         System.out.println("M3 = " + printMatrix(m3));
+
+        System.out.println("Identity = " + printMatrix(matrixProduct(secondMat, inv2)));
+
 
     }
 
@@ -154,8 +160,12 @@ public class GL_Operations_Lab1_Ex1 {
     }
 
     private static Mat3 matrixProduct(Mat3 firstMat, Mat3 secondMat) {
+        float a = (firstMat.m00 * secondMat.m00);
+        float b = (firstMat.m01 * secondMat.m10);
+        float c = (firstMat.m02 * secondMat.m20);
 
-        float matrixProductM00 = (firstMat.m00 * secondMat.m00) + (firstMat.m01 * secondMat.m10) + (firstMat.m02 * secondMat.m20);
+        float matrixProductM00 = a + b + c;
+//        float matrixProductM00 = (firstMat.m00 * secondMat.m00) + (firstMat.m01 * secondMat.m10) + (firstMat.m02 * secondMat.m20);
         float matrixProductM01 = (firstMat.m00 * secondMat.m01) + (firstMat.m01 * secondMat.m11) + (firstMat.m02 * secondMat.m21);
         float matrixProductM02 = (firstMat.m00 * secondMat.m02) + (firstMat.m01 * secondMat.m12) + (firstMat.m02 * secondMat.m22);
 
@@ -187,10 +197,51 @@ public class GL_Operations_Lab1_Ex1 {
     }
 
     public static Mat3 inverseMatrix(Mat3 mat, Mat3 dest) {
-        return mat.inverse();
+        return mat.inverse_();
 
 //        float s = 1.0f / determinant(mat);
-//        dest.set((mat.m11 * mat.m22 - mat.m21 * mat.m12) * s,
+//
+//        float matrixProductM00 = (mat.m11 * mat.m22 - mat.m12 * mat.m21)
+//                * s
+//                ;
+//        float matrixProductM01 = (mat.m21 * mat.m02 - mat.m22 * mat.m01)
+//                * s
+//                ;
+//        float matrixProductM02 = (mat.m01 * mat.m12 - mat.m11 * mat.m02)
+//                * s
+//                ;
+//        float matrixProductM10 = (mat.m20 * mat.m12 - mat.m10 * mat.m22)
+//                * s
+//                ;
+//        float matrixProductM11 = (mat.m00 * mat.m22 - mat.m20 * mat.m02)
+//                * s
+//                ;
+//        float matrixProductM12 = (mat.m10 * mat.m02 - mat.m00 * mat.m12)
+//                * s
+//                ;
+//        float matrixProductM20 = (mat.m10 * mat.m21 - mat.m20 * mat.m11)
+//                * s
+//                ;
+//        float matrixProductM21 = (mat.m20 * mat.m01 - mat.m00 * mat.m21)
+//                * s
+//                ;
+//        float matrixProductM22 = (mat.m11 * mat.m22 - mat.m21 * mat.m12)
+//                * s
+//                ;
+//
+//        dest.set(
+//                matrixProductM00,
+//                matrixProductM01,
+//                matrixProductM02,
+//                matrixProductM10,
+//                matrixProductM11,
+//                matrixProductM12,
+//                matrixProductM20,
+//                matrixProductM21,
+//                matrixProductM22
+//        );
+
+//        (mat.m11 * mat.m22 - mat.m21 * mat.m12) * s,
 //                (mat.m21 * mat.m02 - mat.m01 * mat.m22) * s,
 //                (mat.m01 * mat.m12 - mat.m11 * mat.m02) * s,
 //                (mat.m20 * mat.m12 - mat.m10 * mat.m22) * s,
@@ -198,15 +249,25 @@ public class GL_Operations_Lab1_Ex1 {
 //                (mat.m10 * mat.m02 - mat.m00 * mat.m12) * s,
 //                (mat.m10 * mat.m21 - mat.m20 * mat.m11) * s,
 //                (mat.m20 * mat.m01 - mat.m00 * mat.m21) * s,
-//                (mat.m00 * mat.m11 - mat.m10 * mat.m01) * s);
+//                (mat.m00 * mat.m11 - mat.m10 * mat.m01) * s
 //        return dest;
     }
 
-//    public static float determinant(Mat3 mat) {
-//        return (mat.m00 * mat.m11 - mat.m01 * mat.m10) * mat.m22
+    public static float determinant(Mat3 mat) {
+        float a = (mat.m00 * mat.m11 - mat.m01 * mat.m10) * mat.m22;
+
+        float b = (mat.m02 * mat.m10 - mat.m00 * mat.m12) * mat.m21;
+
+        float c = (mat.m01 * mat.m12 - mat.m02 * mat.m11) * mat.m20;
+
+        return
+                a + b + c
+
+//                (mat.m00 * mat.m11 - mat.m01 * mat.m10) * mat.m22
 //                + (mat.m02 * mat.m10 - mat.m00 * mat.m12) * mat.m21
-//                + (mat.m01 * mat.m12 - mat.m02 * mat.m11) * mat.m20;
-//    }
+//                + (mat.m01 * mat.m12 - mat.m02 * mat.m11) * mat.m20
+                ;
+    }
 
     public static String printMatrix(Mat3 mat3) {
         return "Matrix to be Printed" + "\n"

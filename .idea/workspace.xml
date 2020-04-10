@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5281d72f-381b-45ad-a682-7117441b904d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/figures/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/figures/Line.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/BarycentricT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex3_Barycentric_T.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/GFG.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +73,20 @@
       <recent name="D:\Git VC\open_gl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GL_Operations_Lab1_Ex3_Barycentric_T">
+  <component name="RunManager" selected="Application.GL_Operations_Lab2_Ex1">
+    <configuration name="GL_Operations_Lab1_Ex1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gl_1.GL_Operations_Lab1_Ex1" />
+      <module name="open_gl" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gl_1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GL_Operations_Lab1_Ex2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gl_1.GL_Operations_Lab1_Ex2" />
       <module name="open_gl" />
@@ -129,26 +139,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Triangle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="figures.Triangle" />
-      <module name="open_gl" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="figures.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GL_Operations_Lab1_Ex3_Barycentric_T" />
-        <item itemvalue="Application.GL_Operations_Lab1_Ex2" />
-        <item itemvalue="Application.Line" />
         <item itemvalue="Application.GL_Operations_Lab2_Ex1" />
-        <item itemvalue="Application.Triangle" />
+        <item itemvalue="Application.GL_Operations_Lab1_Ex1" />
+        <item itemvalue="Application.GL_Operations_Lab1_Ex2" />
+        <item itemvalue="Application.GL_Operations_Lab1_Ex3_Barycentric_T" />
+        <item itemvalue="Application.Line" />
       </list>
     </recent_temporary>
   </component>
@@ -195,6 +192,13 @@
       <workItem from="1586024031276" duration="518000" />
       <workItem from="1586082764587" duration="446000" />
       <workItem from="1586087578644" duration="11109000" />
+      <workItem from="1586255702124" duration="5525000" />
+      <workItem from="1586271594364" duration="432000" />
+      <workItem from="1586432265095" duration="11050000" />
+      <workItem from="1586444006700" duration="534000" />
+      <workItem from="1586446005946" duration="2957000" />
+      <workItem from="1586450572925" duration="1143000" />
+      <workItem from="1586502309188" duration="8167000" />
     </task>
     <servers />
   </component>
@@ -202,10 +206,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1585068029457">
+    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1586441191709">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1585068029457" />
+    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1586441191709" />
     <state x="618" y="306" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585579610394">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -230,42 +234,42 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1585753626170" />
-    <state width="1493" height="174" key="GridCell.Tab.0.bottom" timestamp="1586098106371">
+    <state width="724" height="128" key="GridCell.Tab.0.bottom" timestamp="1586508780791">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="174" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586098106371" />
-    <state width="1493" height="174" key="GridCell.Tab.0.center" timestamp="1586098106371">
+    <state width="724" height="128" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586508780791" />
+    <state width="724" height="128" key="GridCell.Tab.0.center" timestamp="1586508780790">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="174" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586098106371" />
-    <state width="1493" height="174" key="GridCell.Tab.0.left" timestamp="1586098106371">
+    <state width="724" height="128" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586508780790" />
+    <state width="724" height="128" key="GridCell.Tab.0.left" timestamp="1586508780790">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="174" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586098106371" />
-    <state width="1493" height="174" key="GridCell.Tab.0.right" timestamp="1586098106371">
+    <state width="724" height="128" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586508780790" />
+    <state width="724" height="128" key="GridCell.Tab.0.right" timestamp="1586508780791">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="174" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586098106371" />
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1586097722165">
+    <state width="724" height="128" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586508780791" />
+    <state width="724" height="425" key="GridCell.Tab.1.bottom" timestamp="1586508695217">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586097722165" />
-    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1586097722165">
+    <state width="724" height="425" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586508695217" />
+    <state width="724" height="425" key="GridCell.Tab.1.center" timestamp="1586508695216">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586097722165" />
-    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1586097722165">
+    <state width="724" height="425" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586508695216" />
+    <state width="724" height="425" key="GridCell.Tab.1.left" timestamp="1586508695216">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586097722165" />
-    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1586097722165">
+    <state width="724" height="425" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586508695216" />
+    <state width="724" height="425" key="GridCell.Tab.1.right" timestamp="1586508695217">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586097722165" />
-    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1585743990176">
+    <state width="724" height="425" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586508695217" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1586446553482">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1585743990176" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1586446553482" />
     <state x="532" y="128" key="RollbackChangesDialog" timestamp="1585914207701">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -278,43 +282,63 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1585914975901" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1586097899039">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1586256835830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586097899039" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586256835830" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java</url>
-          <line>189</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java</url>
-          <line>201</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java</url>
-          <line>206</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex2.java</url>
           <line>37</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="93" />
+          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/io/github/java-graphics/glm/1.0.1/glm-1.0.1-sources.jar!/glm/mat/_3/funcMatrix.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java</url>
+          <line>231</line>
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="94" />
+          <line>114</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab1_Ex1.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="125" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
