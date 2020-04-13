@@ -32,6 +32,12 @@ public class GL_Operations_Lab1_Ex1 {
                 j.x, j.y, j.z,
                 k.x, k.y, k.z
         );
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+
 
         //Vectors
         Vec3 v1 = additionV(firstNr, secNr);
@@ -160,12 +166,13 @@ public class GL_Operations_Lab1_Ex1 {
     }
 
     private static Mat3 matrixProduct(Mat3 firstMat, Mat3 secondMat) {
-        float a = (firstMat.m00 * secondMat.m00);
-        float b = (firstMat.m01 * secondMat.m10);
-        float c = (firstMat.m02 * secondMat.m20);
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
+        //MATRIX A multiplied by Vector X => B and from here Getting X => A-1 (Inverse) * B
 
-        float matrixProductM00 = a + b + c;
-//        float matrixProductM00 = (firstMat.m00 * secondMat.m00) + (firstMat.m01 * secondMat.m10) + (firstMat.m02 * secondMat.m20);
+        float matrixProductM00 = (firstMat.m00 * secondMat.m00) + (firstMat.m01 * secondMat.m10) + (firstMat.m02 * secondMat.m20);
         float matrixProductM01 = (firstMat.m00 * secondMat.m01) + (firstMat.m01 * secondMat.m11) + (firstMat.m02 * secondMat.m21);
         float matrixProductM02 = (firstMat.m00 * secondMat.m02) + (firstMat.m01 * secondMat.m12) + (firstMat.m02 * secondMat.m22);
 
