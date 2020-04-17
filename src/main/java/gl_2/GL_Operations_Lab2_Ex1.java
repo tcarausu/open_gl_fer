@@ -1,4 +1,4 @@
-package gl_1;
+package gl_2;
 
 import glm.vec._2.Vec2;
 
