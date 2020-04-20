@@ -2,45 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5281d72f-381b-45ad-a682-7117441b904d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/all.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arena.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bird.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bull.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dragon.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frog.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kocka.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/porsche.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skull.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gl_3/galb3_commented.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gl_4/GL_Operations_Lab4_Ex1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/teapot.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/teddy.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temple.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tetrahedron.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utility/ABCDEquation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utility/FaceTriangle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gl_1/GL_Operations_Lab2_Ex1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab2_Ex1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gl_2/GL_Operations_Lab3_Ex1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_3/GL_Operations_Lab3_Ex1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gl_4/GL_Operations_Lab4_Ex1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gl_4/GL_Operations_Lab4_Ex1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/system_solver/LinearSystemSolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/system_solver/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/system_solver/RouchèCapelliSolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utility/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/open_gl.kotlin_module" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -71,6 +46,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,9 +56,11 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Git VC\open_gl\src\main\java\gl_4" />
       <recent name="D:\Git VC\open_gl" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="gl_4" />
       <recent name="gl_3" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -159,9 +137,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.GL_Operations_Lab4_Ex1" />
+        <item itemvalue="Application.GL_Operations_Lab2_Ex1" />
         <item itemvalue="Application.GL_Operations_Lab3_Ex1" />
         <item itemvalue="Application.ZD4" />
-        <item itemvalue="Application.GL_Operations_Lab2_Ex1" />
         <item itemvalue="Application.GL_Operations_Lab1_Ex3_Barycentric_T" />
       </list>
     </recent_temporary>
@@ -231,7 +209,19 @@
       <workItem from="1587045372395" duration="1062000" />
       <workItem from="1587046996021" duration="6378000" />
       <workItem from="1587114028704" duration="1961000" />
-      <workItem from="1587118196672" duration="4969000" />
+      <workItem from="1587118196672" duration="8501000" />
+      <workItem from="1587130265206" duration="3273000" />
+      <workItem from="1587133875314" duration="3339000" />
+      <workItem from="1587141624316" duration="62000" />
+      <workItem from="1587141791146" duration="2599000" />
+      <workItem from="1587203845994" duration="5844000" />
+      <workItem from="1587212849243" duration="1030000" />
+      <workItem from="1587215328400" duration="3283000" />
+      <workItem from="1587222129172" duration="465000" />
+      <workItem from="1587289278941" duration="1793000" />
+      <workItem from="1587294507323" duration="555000" />
+      <workItem from="1587371673400" duration="1119000" />
+      <workItem from="1587402365683" duration="1668000" />
     </task>
     <servers />
   </component>
@@ -242,10 +232,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1586954758688">
+    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1587208438007">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1586954758688" />
+    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1587208438007" />
     <state x="618" y="306" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585579610394">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -262,46 +252,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1586001701464" />
+    <state x="499" y="164" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1587134158895">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="164" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.834@0.0.1536.834" timestamp="1587134158895" />
     <state x="516" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585836002659">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="516" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1585836002659" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1586800716075">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1587209357940">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1586800716075" />
-    <state width="1493" height="254" key="GridCell.Tab.0.bottom" timestamp="1587122926506">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1587209357940" />
+    <state width="1493" height="281" key="GridCell.Tab.0.bottom" timestamp="1587403957201">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587122926506" />
-    <state width="1493" height="254" key="GridCell.Tab.0.center" timestamp="1587122926506">
+    <state width="1493" height="281" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587403957201" />
+    <state width="1493" height="281" key="GridCell.Tab.0.center" timestamp="1587403957200">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587122926506" />
-    <state width="1493" height="254" key="GridCell.Tab.0.left" timestamp="1587122926506">
+    <state width="1493" height="281" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587403957200" />
+    <state width="1493" height="281" key="GridCell.Tab.0.left" timestamp="1587403957200">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587122926506" />
-    <state width="1493" height="254" key="GridCell.Tab.0.right" timestamp="1587122926506">
+    <state width="1493" height="281" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587403957200" />
+    <state width="1493" height="281" key="GridCell.Tab.0.right" timestamp="1587403957201">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587122926506" />
-    <state width="1493" height="254" key="GridCell.Tab.1.bottom" timestamp="1587122763292">
+    <state width="1493" height="281" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587403957201" />
+    <state width="1493" height="259" key="GridCell.Tab.1.bottom" timestamp="1587403733074">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587122763292" />
-    <state width="1493" height="254" key="GridCell.Tab.1.center" timestamp="1587122763292">
+    <state width="1493" height="259" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587403733074" />
+    <state width="1493" height="259" key="GridCell.Tab.1.center" timestamp="1587403733074">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1587122763292" />
-    <state width="1493" height="254" key="GridCell.Tab.1.left" timestamp="1587122763292">
+    <state width="1493" height="259" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1587403733074" />
+    <state width="1493" height="259" key="GridCell.Tab.1.left" timestamp="1587403733074">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1587122763292" />
-    <state width="1493" height="254" key="GridCell.Tab.1.right" timestamp="1587122763292">
+    <state width="1493" height="259" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1587403733074" />
+    <state width="1493" height="259" key="GridCell.Tab.1.right" timestamp="1587403733074">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="254" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1587122763292" />
+    <state width="1493" height="259" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1587403733074" />
+    <state x="349" y="160" key="IDE.errors.dialog" timestamp="1587222422134">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="349" y="160" key="IDE.errors.dialog/0.0.1536.834@0.0.1536.834" timestamp="1587222422134" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1586446553482">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -310,10 +308,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="532" y="128" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1585914207701" />
-    <state x="499" y="173" key="extract.method.dialog" timestamp="1586097848693">
+    <state x="277" y="62" key="SettingsEditor" timestamp="1587133675887">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="173" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1586097848693" />
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1587133675887" />
+    <state x="499" y="173" key="extract.method.dialog" timestamp="1587124392739">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="173" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1587124392739" />
     <state x="478" y="19" width="579" height="795" key="find.popup" timestamp="1587116080700">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -326,10 +328,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1586773153585" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1586256835830">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1587133606625">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586256835830" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1587133606625" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -405,21 +407,16 @@
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_4/GL_Operations_Lab4_Ex1.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="177" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_4/GL_Operations_Lab4_Ex1.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="223" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gl_4/GL_Operations_Lab4_Ex1.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="224" />
+          <url>file://$PROJECT_DIR$/src/main/java/gl_3/GL_Operations_Lab3_Ex1.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="225" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="abcdValuesHead.get(1)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

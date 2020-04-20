@@ -1,32 +1,129 @@
 package gl_4;
 
+import com.jogamp.opengl.util.FPSAnimator;
 import glm.vec._3.Vec3;
+import utility.ABCDEquation;
 import utility.Constant;
-import utility.iPolyElement;
+import utility.FaceTriangle;
 
+import javax.media.opengl.*;
+import javax.media.opengl.awt.GLCanvas;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class GL_Operations_Lab4_Ex1 {
+import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+
+public class GL_Operations_Lab4_Ex1 implements GLEventListener {
+    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static int widthToUse = 1280, heightToUse = 720;
     private static String[] vectorsTopLine, trianglePointersLine;
     private static AtomicInteger counterElements = new AtomicInteger();
     private static AtomicInteger polyElCounter = new AtomicInteger();
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner sc = new Scanner(new File(Constant.tetrahedron));
+    //setupVariables
+//    private static HashMap<String, ArrayList<Double>> triangleLineWithABCDValues = new HashMap<>();
+    private static HashMap<String, HashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new HashMap<>();
+    private static ABCDEquation equation;
+    private static List<Vec3> vec3s = new ArrayList<>();
+    private static List<Double> elementValues = new ArrayList<>();
+    private static List<Double> polyValues = new ArrayList<>();
 
-        HashMap<String, ArrayList<Double>> triangleLineWithABCDValues = new HashMap<>();
-        ArrayList<Double> ABDCValues = new ArrayList<>();
-        List<Vec3> vec3s = new ArrayList<>();
-        List<Vec3> triangleVec3s = new ArrayList<>();
-        List<iPolyElement> polyElements = new ArrayList<>();
-        List<Double> elementValues = new ArrayList<>();
-        List<Double> polyValues = new ArrayList<>();
+    @Override
+    public void display(GLAutoDrawable drawable) {
+
+        final GL2 gl = drawable.getGL().getGL2();
+        gl.glViewport(0, 0, 1000, 1000);
+        gl.glMatrixMode(gl.GL_PROJECTION_MATRIX);
+        gl.glLoadIdentity();
+//        drawable.getGL().getGL2().glOrtho(0, 1000, 0, 1000, 0, 1);
+        drawable.getGL().getGL2().glOrtho(-5, 5, -5, 5, -5, 10);
+        gl.glMatrixMode(gl.GL_MODELVIEW_MATRIX);
+
+        gl.glClearColor(1, 1, 1, 0);
+        gl.glClear(GL_COLOR_BUFFER_BIT);
+        //static field
+        gl.glColor3f(0, 0, 0);
+
+        gl.glBegin(gl.GL_LINE_LOOP);
+
+        triangleLineWithABCDValues.forEach((key, value) -> {
+            for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
+                ArrayList<Vec3> valueVectors = entry.getValue();
+
+                Vec3 firstVector = valueVectors.get(0);
+                Vec3 secondVector = valueVectors.get(1);
+                Vec3 thirdVector = valueVectors.get(2);
+
+                gl.glVertex3d(firstVector.x, firstVector.y, firstVector.z);
+                gl.glVertex3d(secondVector.x, secondVector.y, secondVector.z);
+                gl.glVertex3d(thirdVector.x, thirdVector.y, thirdVector.z);
+
+                boolean in;
+                in = isInsideOf(valueVectors.get(0), entry.getKey());
+                if (in)
+                    System.out.println("Point V with coordinates: (" + valueVectors.get(0).x + ", "
+                            + (valueVectors.get(0).y) + ") IS INSIDE OF POLYGON !");
+                else
+                    System.out.println("Point V with coordinates: (" + valueVectors.get(0).x
+                            + ", " + (valueVectors.get(0).y) + ") IS NOT INSIDE OF POLYGON");
+                break;
+
+            }
+        });
+
+
+        gl.glEnd();
+
+        gl.glFlush();
+
+    }
+
+    @Override
+    public void init(GLAutoDrawable drawable) {
+
+    }
+
+    @Override
+    public void dispose(GLAutoDrawable drawable) {
+
+    }
+
+    @Override
+    public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        setupVectorsAndTriangles();
+        final GLProfile profile = GLProfile.get(GLProfile.GL2);
+        GLCapabilities capabilities = new GLCapabilities(profile);
+        // The canvas
+        final GLCanvas glcanvas = new GLCanvas(capabilities);
+        GL_Operations_Lab4_Ex1 l = new GL_Operations_Lab4_Ex1();
+        glcanvas.requestFocus();
+        glcanvas.addGLEventListener(l);
+        glcanvas.setSize(widthToUse, heightToUse);
+
+        FPSAnimator animator = new FPSAnimator(glcanvas, 60);
+        animator.start();
+
+        //creating frame
+        final JFrame frame = new JFrame("lab2");
+        //adding canvas to frame
+        frame.getContentPane().add(glcanvas);
+        frame.setSize(frame.getContentPane().getPreferredSize());
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private static void setupVectorsAndTriangles() throws FileNotFoundException {
+        Scanner sc = new Scanner(new File(Constant.kocka));
+
         while (sc.hasNext()) {
             String line = sc.nextLine();
 
@@ -58,6 +155,7 @@ public class GL_Operations_Lab4_Ex1 {
                     double polyValue = Double.parseDouble(element);
                     polyValues.add(polyValue);
 
+                    HashMap<ABCDEquation, ArrayList<Vec3>> a_d_eqWithVectors = null;
                     if (polyValues.size() % 3 == 0) {
                         int firstPolyValueFromF = (int) polyValues.get(polyElCounter.get()).doubleValue();
                         int sPolyValueFromF = (int) polyValues.get(polyElCounter.get() + 1).doubleValue();
@@ -66,32 +164,60 @@ public class GL_Operations_Lab4_Ex1 {
                         Vec3 secondEdge = vec3s.get(sPolyValueFromF - 1);
                         Vec3 thirdEdge = vec3s.get(thPolyValueFromF - 1);
 
-                        double A = (secondEdge.y - firstEdge.y) * (thirdEdge.z - firstEdge.z)
-                                - (secondEdge.z - firstEdge.z) * (thirdEdge.y - firstEdge.y);
+                        FaceTriangle faceTriangle = new FaceTriangle(firstEdge, secondEdge, thirdEdge);
 
-                        double B = -(secondEdge.x - firstEdge.x) * (thirdEdge.z - firstEdge.z)
-                                + (secondEdge.z - firstEdge.z) * (thirdEdge.x - firstEdge.x);
+                        float x_1 = faceTriangle.getFirstEdge().x;
+                        float y_1 = faceTriangle.getFirstEdge().y;
+                        float z_1 = faceTriangle.getFirstEdge().z;
 
-                        double C = (secondEdge.x - firstEdge.x) * (thirdEdge.y - firstEdge.y)
-                                - (secondEdge.y - firstEdge.y) * (thirdEdge.x - firstEdge.x);
+                        float x_2 = faceTriangle.getSecondEdge().x;
+                        float y_2 = faceTriangle.getSecondEdge().y;
+                        float z_2 = faceTriangle.getSecondEdge().z;
 
-                        double D = -(firstEdge.x * A - firstEdge.y * B - firstEdge.z * C);
+                        float x_3 = faceTriangle.getThirdEdge().x;
+                        float y_3 = faceTriangle.getThirdEdge().y;
+                        float z_3 = faceTriangle.getThirdEdge().z;
 
-                        ABDCValues.add(A);
-                        ABDCValues.add(B);
-                        ABDCValues.add(C);
-                        ABDCValues.add(D);
+                        double A = (y_2 - y_1) * (z_3 - z_1) - (z_2 - z_1) * (y_3 - y_1);
+                        double B = -(x_2 - x_1) * (z_3 - z_1) + (z_2 - z_1) * (x_3 - x_1);
+                        double C = (x_2 - x_1) * (y_3 - y_1) - (y_2 - y_1) * (x_3 - x_1);
+                        double D = -(x_1 * A - y_1 * B - z_1 * C);
 
-                        triangleLineWithABCDValues.put(line, ABDCValues);
+                        equation = new ABCDEquation(A, B, C, D);
+
+                        a_d_eqWithVectors = new HashMap<>();
+                        a_d_eqWithVectors.put(equation, faceTriangle.getEdgeVectors());
                         polyElCounter.getAndAdd(3);
                     }
-
+                    triangleLineWithABCDValues.put(line, a_d_eqWithVectors);
                 }
 
             }
         }
-        System.out.println(vec3s.toString());
-        System.out.println(triangleLineWithABCDValues.toString());
-
     }
+
+    public boolean isInsideOf(Vec3 vertex, ABCDEquation abcdEquation) {
+        double a, b, c, d, r;
+        float x = vertex.x;
+        float y = vertex.y;
+        float z = vertex.z;
+        boolean isInside = false;
+
+        a = abcdEquation.getA();
+        b = abcdEquation.getB();
+        c = abcdEquation.getC();
+        d = abcdEquation.getD();
+
+        r = a * x + b * y + c * z + d;
+
+        if (r == 0) {
+            isInside = true;
+        }
+        if (r > 0)
+            return false;
+        if (r < 0)
+            return false;
+        return isInside;
+    }
+
 }
