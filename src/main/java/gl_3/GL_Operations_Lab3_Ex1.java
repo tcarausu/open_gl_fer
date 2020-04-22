@@ -17,27 +17,26 @@ import java.util.ArrayList;
 import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
 
 public class GL_Operations_Lab3_Ex1 implements GLEventListener {
-//    private static final Vec2 V1 = new Vec2(50, 200);
-//    private static final Vec2 V2 = new Vec2(150, 350);
-//    private static final Vec2 V3 = new Vec2(300, 150);
-//    private static final Vec2 V4 = new Vec2(100, 50);
-//
+    private static final Vec2 V1 = new Vec2(50, 200);
+    private static final Vec2 V2 = new Vec2(150, 350);
+    private static final Vec2 V3 = new Vec2(300, 150);
+    private static final Vec2 V4 = new Vec2(100, 50);
+
 //    private static final Vec2 V1 = new Vec2(200, 350);
 //    private static final Vec2 V2 = new Vec2(300, 500);
 //    private static final Vec2 V3 = new Vec2(450, 300);
 //    private static final Vec2 V4 = new Vec2(250, 200);
 //
-    private static final Vec2 V1 = new Vec2(200, 350);
-    private static final Vec2 V2 = new Vec2(300, 350);
-    private static final Vec2 V3 = new Vec2(400, 100);
-    private static final Vec2 V4 = new Vec2(100, 100);
+//    private static final Vec2 V1 = new Vec2(200, 350);
+//    private static final Vec2 V2 = new Vec2(300, 350);
+//    private static final Vec2 V3 = new Vec2(400, 100);
+//    private static final Vec2 V4 = new Vec2(100, 100);
 
     private static final ArrayList<iPolyElement> iPolyElements = new ArrayList<>();
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     private static final Point2D vPoint = new Point(100, 250);
-
-    private float D;
+//    private static final Point2D vPoint = new Point(150, 350);
 
     private static boolean isClockwise = true;
     private boolean isConvex = true;
@@ -59,26 +58,28 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
         //static field
         gl.glColor3f(0, 0, 0);
 
-
         gl.glBegin(gl.GL_LINES);
 
-        computingCoefficientConvexPolygon(iPolyElements, iPolyElements.size(), gl);
-        fillConvexPolygon(iPolyElements, iPolyElements.size(), gl);
+        computingCoefficientConvexPolygon(gl);
+        fillConvexPolygon(gl);
+
 //
 //        boolean in;
+//        System.out.println("clicked");
 //        try {
-//            in = checkIsMouseIn(iPolyElements, (int) vPoint.getX(), (int) (screenSize.height - vPoint.getY()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.out.println("Point V with coordinates: (" + vPoint.getX() + ", " + (int) (screenSize.height - vPoint.getY()) + ")" +
-//                    "ERROR !");
+//            in = checkIsMouseIn(iPolyElements, (int) vPoint.getX(), (int)( screenSize.height - vPoint.getY()));
+//        } catch (Exception e1) {
+//            System.out.println("Point V with coordinates: (" + vPoint.getX() + ", " + (screenSize.height - vPoint.getY()) + ")" +
+//                    "On the edge !");
+//
 //            return;
 //        }
 //        if (in)
-//            System.out.println("Point V with coordinates: (" + vPoint.getX() + ", " + (int) (screenSize.height - vPoint.getY())+ ") IS INSIDE OF POLYGON !");
+//            System.out.println("Point V with coordinates: (" + vPoint.getX() + ", " + (screenSize.height - vPoint.getY())
+//                    + ") IS INSIDE OF POLYGON !");
 //        else
-//            System.out.println("Point V with coordinates: (" + vPoint.getX() + ", " + (int) (screenSize.height - vPoint.getY()) + ") IS NOT INSIDE OF POLYGON");
-//
+//            System.out.println("Point V with coordinates: (" + vPoint.getX() + ", " + (screenSize.height - vPoint.getY())
+//                    + ") IS NOT INSIDE OF POLYGON");
 
         gl.glEnd();
 
@@ -110,12 +111,13 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
     }
 
 
-    private void computingCoefficientConvexPolygon(ArrayList<iPolyElement> polyElements, int n, GL2 gl2) {
-        int i, i0;
+    private void computingCoefficientConvexPolygon(GL2 gl2) {
+        int i, i0, n;
+        n = iPolyElements.size();
         i0 = n - 1;
         for (i = 0; i < n; i++) {
-            iPolyElement elemi0 = polyElements.get(i0);
-            iPolyElement elemi = polyElements.get(i);
+            iPolyElement elemi0 = iPolyElements.get(i0);
+            iPolyElement elemi = iPolyElements.get(i);
 
             double x0 = elemi0.getTop().getX();
             double y0 = elemi0.getTop().getY();
@@ -134,27 +136,25 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
 
             gl2.glVertex2f((float) x0, (float) y0);
             gl2.glVertex2f((float) x1, (float) y1);
+
             i0 = i;
         }
     }
 
-    private void fillConvexPolygon(
-            ArrayList<iPolyElement> polyElements,
-            int n,
-            GL2 gl2) {
+    private void fillConvexPolygon(GL2 gl2) {
         int i, i0, y;
-
+        int n = iPolyElements.size();
         int xmin, xmax, ymin, ymax;
         double L, D, x;
         /* Search for minimum and maximum coordinates      */
-        xmin = xmax = (int) polyElements.get(0).getTop().getX();
-        ymin = ymax = (int) polyElements.get(0).getTop().getY();
+        xmin = xmax = (int) iPolyElements.get(0).getTop().getX();
+        ymin = ymax = (int) iPolyElements.get(0).getTop().getY();
 
         for (i = 1; i < n; i++) {
-            if (xmin > polyElements.get(i).getTop().getX()) xmin = (int) polyElements.get(i).getTop().getX();
-            if (xmax < polyElements.get(i).getTop().getX()) xmax = (int) polyElements.get(i).getTop().getX();
-            if (ymin > polyElements.get(i).getTop().getY()) ymin = (int) polyElements.get(i).getTop().getY();
-            if (ymax < polyElements.get(i).getTop().getY()) ymax = (int) polyElements.get(i).getTop().getY();
+            if (xmin > iPolyElements.get(i).getTop().getX()) xmin = (int) iPolyElements.get(i).getTop().getX();
+            if (xmax < iPolyElements.get(i).getTop().getX()) xmax = (int) iPolyElements.get(i).getTop().getX();
+            if (ymin > iPolyElements.get(i).getTop().getY()) ymin = (int) iPolyElements.get(i).getTop().getY();
+            if (ymax < iPolyElements.get(i).getTop().getY()) ymax = (int) iPolyElements.get(i).getTop().getY();
         }
         /*Polygon coloring: for every y between ymin and ymax it works ... */
         for (y = ymin; y <= ymax; y++) {
@@ -165,22 +165,22 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
             /* "i0" is the beginning of the hill, and "i" is the end of the hill */
             for (i = 0; i < n; i0 = i++) {
                 /* if the edge is horizontal */
-                if (polyElements.get(i0).getEdge().getA() == 0) {
-                    if (polyElements.get(i0).getTop().getY() == y) {
-                        if (polyElements.get(i0).getTop().getX() < polyElements.get(i).getTop().getX()) {
-                            L = polyElements.get(i0).getTop().getX();
-                            D = polyElements.get(i).getTop().getX();
+                if (iPolyElements.get(i0).getEdge().getA() == 0) {
+                    if (iPolyElements.get(i0).getTop().getY() == y) {
+                        if (iPolyElements.get(i0).getTop().getX() < iPolyElements.get(i).getTop().getX()) {
+                            L = iPolyElements.get(i0).getTop().getX();
+                            D = iPolyElements.get(i).getTop().getX();
                         } else {
-                            L = polyElements.get(i).getTop().getX();
-                            D = polyElements.get(i0).getTop().getX();
+                            L = iPolyElements.get(i).getTop().getX();
+                            D = iPolyElements.get(i0).getTop().getX();
                         }
                         break;
                     }
                 } else {
                     /* otherwise it's a regular edge, find the intersection */
-                    x = (-polyElements.get(i0).getEdge().getB() * y - polyElements.get(i0).getEdge().getC())
-                            / polyElements.get(i0).getEdge().getA();
-                    if (polyElements.get(i0).isLeft()) {
+                    x = (-iPolyElements.get(i0).getEdge().getB() * y - iPolyElements.get(i0).getEdge().getC())
+                            / iPolyElements.get(i0).getEdge().getA();
+                    if (iPolyElements.get(i0).isLeft()) {
                         if (L < x) L = x;
                     } else {
                         if (D > x) D = x;
@@ -208,18 +208,31 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
     }
 
     public static boolean checkIsMouseIn(ArrayList<iPolyElement> polyElements, int x, int y) throws Exception {
-        double r;
         boolean mightBeOnTheEdge = false;
-        for (iPolyElement element : polyElements) {
-            r = element.getEdge().getA() * x + element.getEdge().getB() * y + element.getEdge().getC();
-//					System.out.println("r = " + r);
-            if (r == 0) /* tocka na bridu poligona */
+        double r;
+        int i, i0, n;
+        n = iPolyElements.size();
+        i0 = n - 1;
+        for (i = 0; i < n; i++) {
+            iPolyElement elemi0 = iPolyElements.get(i0);
+            iPolyElement elemi = iPolyElements.get(i);
+
+            double a0 = elemi0.getEdge().getA();
+            double b0 = elemi0.getEdge().getB();
+            double c0 = elemi0.getEdge().getC();
+
+            double a1 = elemi.getEdge().getA();
+            double b1 = elemi.getEdge().getB();
+            double c1 = elemi.getEdge().getC();
+
+            r = a1 * x + b1 * y + c1;
+            if (r == 0)
                 mightBeOnTheEdge = true;
             if (isClockwise) {
                 if (r > 0)
                     return false;
-
-            } else {
+//            }
+//            else {
                 if (r < 0)
                     return true;
             }
@@ -255,6 +268,8 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
         iPolyElements.add(new iPolyElement(new iPoint2D(V3.x, V3.y)));
         iPolyElements.add(new iPolyElement(new iPoint2D(V4.x, V4.y)));
 
+        System.out.println("please input your coordinates for V: ");
+
         glcanvas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -266,7 +281,7 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
                     in = checkIsMouseIn(iPolyElements, e.getX(), screenSize.height - e.getY());
                 } catch (Exception e1) {
                     System.out.println("Point V with coordinates: (" + e.getX() + ", " + (screenSize.height - e.getY()) + ")" +
-                            "ERROR !");
+                            "On the edge !");
 
                     return;
                 }
