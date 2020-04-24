@@ -54,6 +54,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
         triangleLineWithABCDValues.forEach((key, value) -> {
             for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
                 ArrayList<Vec3> valueVectors = entry.getValue();
+                ABCDEquation equation = entry.getKey();
 
                 Vec3 firstVector = valueVectors.get(0);
                 Vec3 secondVector = valueVectors.get(1);
@@ -64,13 +65,33 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                 gl.glVertex3d(thirdVector.x, thirdVector.y, thirdVector.z);
 
                 boolean in;
-                in = isInsideOf(valueVectors.get(0), entry.getKey());
+                in = isInsideOf(firstVector, equation);
                 if (in)
-                    System.out.println("Point V with coordinates: (" + valueVectors.get(0).x + ", "
-                            + (valueVectors.get(0).y) + ") IS INSIDE OF POLYGON !");
+                    System.out.println("Equation: " + equation + " with coordinates: ("
+                            + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
+                            + " with Point V with coordinates: (" + firstVector.x + ", "
+                            + firstVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
                 else
-                    System.out.println("Point V with coordinates: (" + valueVectors.get(0).x
-                            + ", " + (valueVectors.get(0).y) + ") IS NOT INSIDE OF POLYGON");
+                    System.out.println("Equation: " + equation + " with coordinates: ("
+                            + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
+                            + " with Point V with coordinates: (" + firstVector.x + ", "
+                            + firstVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
+//
+//                in = isInsideOf(secondVector, entry.getKey());
+//                if (in)
+//                    System.out.println("Point V with coordinates: (" + secondVector.x + ", "
+//                            + secondVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
+//                else
+//                    System.out.println("Point V with coordinates: (" + secondVector.x
+//                            + ", " + secondVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
+//
+//                in = isInsideOf(thirdVector, entry.getKey());
+//                if (in)
+//                    System.out.println("Point V with coordinates: (" + thirdVector.x + ", "
+//                            + thirdVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
+//                else
+//                    System.out.println("Point V with coordinates: (" + thirdVector.x
+//                            + ", " + thirdVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
                 break;
 
             }
