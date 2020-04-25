@@ -47,10 +47,11 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
 
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glViewport(0, 0, 1000, 1000);
+        gl.glViewport(0, 0, 700, 700);
+
         gl.glMatrixMode(gl.GL_PROJECTION_MATRIX);
         gl.glLoadIdentity();
-        drawable.getGL().getGL2().glOrtho(0, 1000, 0, 1000, 0, 1);
+        drawable.getGL().getGL2().glOrtho(0, 700, 0, 700, 0, 1);
         gl.glMatrixMode(gl.GL_MODELVIEW_MATRIX);
 
         gl.glClearColor(1, 1, 1, 0);
@@ -290,32 +291,21 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
         n = iPolyElements.size();
         i0 = n - 1;
         for (i = 0; i < n; i++) {
-            iPolyElement elemi0 = iPolyElements.get(i0);
             iPolyElement elemi = iPolyElements.get(i);
-
-            double a0 = elemi0.getEdge().getA();
-            double b0 = elemi0.getEdge().getB();
-            double c0 = elemi0.getEdge().getC();
 
             double a1 = elemi.getEdge().getA();
             double b1 = elemi.getEdge().getB();
             double c1 = elemi.getEdge().getC();
 
             r = a1 * x + b1 * y + c1;
-//            r = a0 * x + b0 * y + c0;
             if (r == 0)
                 mightBeOnTheEdge = true;
             if (isClockwise) {
                 if (r > 0)
                     return false;
+            } else {
                 if (r < 0)
                     return true;
-            }
-            else {
-                if (r > 0)
-                    return true;
-                if (r < 0)
-                    return false;
             }
         }
         if (mightBeOnTheEdge)
@@ -331,13 +321,13 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
         GL_Operations_Lab3_Ex1 l = new GL_Operations_Lab3_Ex1();
         glcanvas.requestFocus();
         glcanvas.addGLEventListener(l);
-        glcanvas.setSize(screenSize.width, screenSize.height);
+        glcanvas.setSize(700, 700);
 
         FPSAnimator animator = new FPSAnimator(glcanvas, 60);
         animator.start();
 
         //creating frame
-        final JFrame frame = new JFrame("lab2");
+        final JFrame frame = new JFrame("lab3");
         //adding canvas to frame
         frame.getContentPane().add(glcanvas);
         frame.setSize(frame.getContentPane().getPreferredSize());
@@ -355,13 +345,15 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mouseX = e.getX();
-                mouseY = screenSize.height - e.getY();
+                mouseY = glcanvas.getHeight() - e.getY();
                 boolean in;
                 System.out.println("clicked");
+                System.out.println(glcanvas.getHeight());
+                System.out.println(glcanvas.getWidth());
                 try {
-                    in = checkIsMouseIn(e.getX(), screenSize.height - e.getY());
+                    in = checkIsMouseIn(e.getX(), glcanvas.getHeight() - e.getY());
                 } catch (Exception e1) {
-                    System.out.println("Point V with coordinates: (" + e.getX() + ", " + (screenSize.height - e.getY()) + ")" +
+                    System.out.println("Point V with coordinates: (" + e.getX() + ", " + (glcanvas.getHeight() - e.getY()) + ")" +
                             "On the edge !");
 
                     return;

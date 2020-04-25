@@ -33,11 +33,13 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
     private static List<Double> elementValues = new ArrayList<>();
     private static List<Double> polyValues = new ArrayList<>();
 
+    private static Vec3 vec3;
+
     @Override
     public void display(GLAutoDrawable drawable) {
 
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glViewport(0, 0, 1000, 1000);
+        gl.glViewport(0, 0, 700, 700);
         gl.glMatrixMode(gl.GL_PROJECTION_MATRIX);
         gl.glLoadIdentity();
 //        drawable.getGL().getGL2().glOrtho(0, 1000, 0, 1000, 0, 1);
@@ -65,7 +67,8 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                 gl.glVertex3d(thirdVector.x, thirdVector.y, thirdVector.z);
 
                 boolean in;
-                in = isInsideOf(firstVector, equation);
+                in = isInsideOf(vec3, equation);
+//                in = isInsideOf(firstVector, equation);
                 if (in)
                     System.out.println("Equation: " + equation + " with coordinates: ("
                             + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
@@ -117,29 +120,6 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
 
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        setupVectorsAndTriangles();
-        final GLProfile profile = GLProfile.get(GLProfile.GL2);
-        GLCapabilities capabilities = new GLCapabilities(profile);
-        // The canvas
-        final GLCanvas glcanvas = new GLCanvas(capabilities);
-        GL_Operations_Lab4_Ex1 l = new GL_Operations_Lab4_Ex1();
-        glcanvas.requestFocus();
-        glcanvas.addGLEventListener(l);
-        glcanvas.setSize(widthToUse, heightToUse);
-
-        FPSAnimator animator = new FPSAnimator(glcanvas, 60);
-        animator.start();
-
-        //creating frame
-        final JFrame frame = new JFrame("lab2");
-        //adding canvas to frame
-        frame.getContentPane().add(glcanvas);
-        frame.setSize(frame.getContentPane().getPreferredSize());
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private static void setupVectorsAndTriangles() throws FileNotFoundException {
@@ -236,9 +216,43 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
         }
         if (r > 0)
             return false;
-        if (r < 0)
-            return false;
+
+//        if (r < 0)
+//            return false;
+
         return isInside;
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner sc = new Scanner(System.in);
+
+        String line = sc.nextLine();
+        String[] values = line.split(",");
+        vec3 = new Vec3(Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
+
+        System.out.println(vec3.x + " " + vec3.y);
+
+        setupVectorsAndTriangles();
+        final GLProfile profile = GLProfile.get(GLProfile.GL2);
+        GLCapabilities capabilities = new GLCapabilities(profile);
+        // The canvas
+        final GLCanvas glcanvas = new GLCanvas(capabilities);
+        GL_Operations_Lab4_Ex1 l = new GL_Operations_Lab4_Ex1();
+        glcanvas.requestFocus();
+        glcanvas.addGLEventListener(l);
+        glcanvas.setSize(700, 700);
+
+        FPSAnimator animator = new FPSAnimator(glcanvas, 60);
+        animator.start();
+
+        //creating frame
+        final JFrame frame = new JFrame("lab4");
+        //adding canvas to frame
+        frame.getContentPane().add(glcanvas);
+        frame.setSize(frame.getContentPane().getPreferredSize());
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
 }
