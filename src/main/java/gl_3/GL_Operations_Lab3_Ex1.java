@@ -274,12 +274,12 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
         int i0 = iPolyElements.size() - 1;
         for (int i = 0; i < iPolyElements.size(); i++) {
             iPolyElement elemi0 = iPolyElements.get(i0);
-            iPolyElement poleli = iPolyElements.get(i);
+            iPolyElement elemi = iPolyElements.get(i);
 
             if (isClockwise)
-                elemi0.setLeft(elemi0.getTop().getY() < poleli.getTop().getY());
+                elemi0.setLeft(elemi0.getTop().getY() < elemi.getTop().getY());
             else
-                elemi0.setLeft(elemi0.getTop().getY() > poleli.getTop().getY());
+                elemi0.setLeft(elemi0.getTop().getY() > elemi.getTop().getY());
             i0 = i;
         }
     }
@@ -359,9 +359,9 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
                     return;
                 }
                 if (in)
-                    System.out.println("Point V with coordinates: (" + e.getX() + ", " + (screenSize.height - e.getY()) + ") IS INSIDE OF POLYGON !");
+                    System.out.println("Point V with coordinates: (" + e.getX() + ", " + (glcanvas.getHeight() - e.getY()) + ") IS INSIDE OF POLYGON !");
                 else
-                    System.out.println("Point V with coordinates: (" + e.getX() + ", " + (screenSize.height - e.getY()) + ") IS NOT INSIDE OF POLYGON");
+                    System.out.println("Point V with coordinates: (" + e.getX() + ", " + (glcanvas.getHeight() - e.getY()) + ") IS NOT INSIDE OF POLYGON");
 
             }
         });

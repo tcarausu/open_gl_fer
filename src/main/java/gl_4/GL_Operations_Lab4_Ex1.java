@@ -67,10 +67,13 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                 gl.glVertex3d(thirdVector.x, thirdVector.y, thirdVector.z);
 
                 boolean in;
-                in = isInsideOf(vec3, equation);
-//                in = isInsideOf(firstVector, equation);
+                if (vec3 != null) {
+                    in = isInsideOf(vec3, equation);
+                } else {
+                    in = isInsideOf(firstVector, equation);
+                }
                 if (in)
-                    System.out.println("Equation: " + equation + " with coordinates: ("
+                    System.out.println("Equation with coordinates: ("
                             + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
                             + " with Point V with coordinates: (" + firstVector.x + ", "
                             + firstVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
@@ -79,24 +82,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                             + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
                             + " with Point V with coordinates: (" + firstVector.x + ", "
                             + firstVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
-//
-//                in = isInsideOf(secondVector, entry.getKey());
-//                if (in)
-//                    System.out.println("Point V with coordinates: (" + secondVector.x + ", "
-//                            + secondVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
-//                else
-//                    System.out.println("Point V with coordinates: (" + secondVector.x
-//                            + ", " + secondVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
-//
-//                in = isInsideOf(thirdVector, entry.getKey());
-//                if (in)
-//                    System.out.println("Point V with coordinates: (" + thirdVector.x + ", "
-//                            + thirdVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
-//                else
-//                    System.out.println("Point V with coordinates: (" + thirdVector.x
-//                            + ", " + thirdVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
                 break;
-
             }
         });
 
@@ -211,12 +197,10 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
         r = a * x + b * y + c * z + d;
 
-        if (r == 0) {
+        if (r == 0)
             isInside = true;
-        }
-        if (r > 0)
-            return false;
-
+//        if (r > 0)
+//            return false;
 //        if (r < 0)
 //            return false;
 
@@ -224,13 +208,19 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+        System.out.println("Please introduce Vector's values to test:");
+        System.out.println("Do you want to use a manual one?:");
+
         Scanner sc = new Scanner(System.in);
-
         String line = sc.nextLine();
-        String[] values = line.split(",");
-        vec3 = new Vec3(Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
 
-        System.out.println(vec3.x + " " + vec3.y);
+        if (line.equals("Y") || line.equals("y")) {
+            line = sc.next();
+            String[] values = line.split(",");
+            vec3 = new Vec3(Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
+            System.out.println("Testing Values: " + vec3.x + " " + vec3.y + " " + vec3.z);
+            sc.close();
+        } else if (line.equals("N")||line.equals("n")) sc.close();
 
         setupVectorsAndTriangles();
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
