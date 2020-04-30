@@ -17,15 +17,14 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static gl_4.GL_Operations_Lab4_Ex1.setupVectorsAndTriangles;
-import static utility.GL_lab5_getTandGT.getT1;
-import static utility.GL_lab5_getTandGT.getT2;
+import static utility.GL_lab5_getTandGT.*;
 
 public class GL_Operations_Lab5_Ex1 implements GLEventListener {
     private static AtomicInteger counterElements = new AtomicInteger();
     private static AtomicInteger polyElCounter = new AtomicInteger();
 
     private static Vec3 original_G = new Vec3(0, 0, 0);
-    private static Vec3 original_E = new Vec3(1, 1, 3);
+    private static Vec3 original_O = new Vec3(1, 1, 3); // EYE/OPERATOR
 
     private static Mat3 mat3 = new Mat3();
     private static HashMap<String, HashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new HashMap<>();
@@ -47,9 +46,22 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
-        System.out.println(printMe(getT1(original_G)));
+        System.out.println(printMe("Matrix T1",getT1(original_G)));
 
-        System.out.println(printMe(getT2(original_G, original_E)));
+        Vec3 gt1 = getGT1(original_G, original_O);
+        System.out.println("Vector GT1 - " + gt1 + "\n");
+
+        Vec3 gt2 = getGT2(gt1);
+
+        System.out.println(printMe("Matrix T2",getT2(original_G, original_O)));
+        System.out.println("Vector GT2 - " + gt2 + "\n");
+
+        Vec3 gt3 = getGT3(gt2);
+        System.out.println(printMe("Matrix T5",getT3(gt2)));
+        System.out.println("Vector GT3 - " + gt3 + "\n");
+
+        System.out.println(printMe("Matrix T4",getT4()));
+        System.out.println(printMe("Matrix T5",getT5()));
 
         glu.gluLookAt(3.0f, 4.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         renderScene(gl);
@@ -184,7 +196,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 //    }
 
 
-    private String printMe(Mat4 mat4) {
+    private String printMe(String title,Mat4 mat4) {
 
         return "Matrix to be Printed " + "\n"
                 + "| " + mat4.m00 + " " + mat4.m01 + " " + mat4.m02 + " " + mat4.m03 + " |\n"
