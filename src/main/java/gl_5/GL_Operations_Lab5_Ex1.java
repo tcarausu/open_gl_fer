@@ -4,6 +4,7 @@ import com.jogamp.opengl.util.FPSAnimator;
 import glm.mat._3.Mat3;
 import glm.mat._4.Mat4;
 import glm.vec._3.Vec3;
+import glm.vec._4.Vec4;
 import utility.ABCDEquation;
 
 import javax.media.opengl.*;
@@ -23,8 +24,8 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
     private static AtomicInteger counterElements = new AtomicInteger();
     private static AtomicInteger polyElCounter = new AtomicInteger();
 
-    private static Vec3 original_G = new Vec3(0, 0, 0);
-    private static Vec3 original_O = new Vec3(1, 1, 3); // EYE/OPERATOR
+    private static Vec3 original_G = new Vec3(0, 0, 0); // x,y,z (s)
+    private static Vec3 original_O = new Vec3(1, 1, 3); // EYE/OPERATOR // x,y,z (0)
 
     private static Mat3 mat3 = new Mat3();
     private static HashMap<String, HashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new HashMap<>();
@@ -46,22 +47,34 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
-        System.out.println(printMe("Matrix T1",getT1(original_G)));
+        Mat4 t1 = getT1(original_G);
+        System.out.println(printMe("Matrix T1", t1));
 
         Vec3 gt1 = getGT1(original_G, original_O);
         System.out.println("Vector GT1 - " + gt1 + "\n");
 
         Vec3 gt2 = getGT2(gt1);
+        Mat4 t2 = getT2(original_G, original_O);
 
-        System.out.println(printMe("Matrix T2",getT2(original_G, original_O)));
+        System.out.println(printMe("Matrix T2", t2));
         System.out.println("Vector GT2 - " + gt2 + "\n");
 
         Vec3 gt3 = getGT3(gt2);
-        System.out.println(printMe("Matrix T5",getT3(gt2)));
+        Mat4 t3 = getT3(gt2);
+
+        System.out.println(printMe("Matrix T5", t3));
         System.out.println("Vector GT3 - " + gt3 + "\n");
 
-        System.out.println(printMe("Matrix T4",getT4()));
-        System.out.println(printMe("Matrix T5",getT5()));
+        System.out.println(printMe("Matrix T4", getT4()));
+        System.out.println(printMe("Matrix T5", getT5()));
+
+        System.out.println(printMe("Matrix T-Total", matrixT(t1, t2, t3, getT4(), getT5())));
+        System.out.println(getHDist(original_O, original_G));
+        System.out.println(gt3.z);
+
+        Vec4 getAP = getAP(original_O, getHDist(original_O, original_G));
+        System.out.println("getAP xStrophe - " + getAP + "\n");
+
 
         glu.gluLookAt(3.0f, 4.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         renderScene(gl);
@@ -196,9 +209,9 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 //    }
 
 
-    private String printMe(String title,Mat4 mat4) {
+    private String printMe(String title, Mat4 mat4) {
 
-        return "Matrix to be Printed " + "\n"
+        return title + " Matrix to be Printed " + "\n"
                 + "| " + mat4.m00 + " " + mat4.m01 + " " + mat4.m02 + " " + mat4.m03 + " |\n"
                 + "| " + mat4.m10 + " " + mat4.m11 + " " + mat4.m12 + " " + mat4.m13 + " |\n"
                 + "| " + mat4.m20 + " " + mat4.m21 + " " + mat4.m22 + " " + mat4.m23 + " |\n"

@@ -112,4 +112,36 @@ public class GL_lab5_getTandGT {
         );
     }
 
+    public static Mat4 matrixT(Mat4 t1, Mat4 t2, Mat4 t3, Mat4 t4, Mat4 t5) {
+        return t1.mul_(t2).mul_(t3).mul_(t4).mul_(t5);
+    }
+
+    public static double getHDist(Vec3 original_O, Vec3 original_G) {
+        return Math.sqrt(
+                (
+                        Math.pow((original_O.x - original_G.x), 2) +
+                                Math.pow((original_O.y - original_G.y), 2) +
+                                Math.pow((original_O.z - original_G.z), 2)
+                )
+        );
+    }
+
+    public static double getXP(Vec3 original_O, double hDist) {
+        return (original_O.x / original_O.z) * hDist;
+    }
+
+    public static double getYP(Vec3 original_O, double hDist) {
+        return (original_O.y / original_O.z) * hDist;
+    }
+
+    public static Vec4 getAP(Vec3 original_O, double hDist) {
+        double xPStrophe = original_O.x;
+        double yPStrophe = original_O.y;
+        double zPStrophe = 0;
+        double hPStrophe = original_O.z / hDist;
+
+
+        return new Vec4(xPStrophe, yPStrophe, zPStrophe, hPStrophe);
+    }
+
 }
