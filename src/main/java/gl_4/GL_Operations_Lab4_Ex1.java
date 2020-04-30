@@ -108,7 +108,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
     }
 
-    private static void setupVectorsAndTriangles() throws FileNotFoundException {
+    public static HashMap<String, HashMap<ABCDEquation, ArrayList<Vec3>>>  setupVectorsAndTriangles() throws FileNotFoundException {
         Scanner sc = new Scanner(new File(Constant.kocka));
 
         while (sc.hasNext()) {
@@ -176,11 +176,12 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                         a_d_eqWithVectors.put(equation, faceTriangle.getEdgeVectors());
                         polyElCounter.getAndAdd(3);
                     }
-                    triangleLineWithABCDValues.put(line, a_d_eqWithVectors);
+                    GL_Operations_Lab4_Ex1.triangleLineWithABCDValues.put(line, a_d_eqWithVectors);
                 }
 
             }
         }
+        return triangleLineWithABCDValues;
     }
 
     public boolean isInsideOf(Vec3 vertex, ABCDEquation abcdEquation) {
@@ -220,7 +221,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
             vec3 = new Vec3(Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
             System.out.println("Testing Values: " + vec3.x + " " + vec3.y + " " + vec3.z);
             sc.close();
-        } else if (line.equals("N")||line.equals("n")) sc.close();
+        } else if (line.equals("N") || line.equals("n")) sc.close();
 
         setupVectorsAndTriangles();
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
