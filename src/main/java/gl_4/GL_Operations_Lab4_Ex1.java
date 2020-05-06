@@ -69,7 +69,8 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                 boolean in;
                 if (vec3 != null) {
                     in = isInsideOf(vec3, equation);
-                } else {
+                }
+                else {
                     in = isInsideOf(firstVector, equation);
                 }
                 if (in)
@@ -233,8 +234,8 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(700, 700);
 
-        FPSAnimator animator = new FPSAnimator(glcanvas, 60);
-        animator.start();
+//        FPSAnimator animator = new FPSAnimator(glcanvas, 60);
+//        animator.start();
 
         //creating frame
         final JFrame frame = new JFrame("lab4");

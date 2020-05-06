@@ -21,6 +21,11 @@ public class GL_Operations_Lab1_Ex2 {
         String line = sc.nextLine();
         String[] values = line.split(",");
 
+        //        glu.gluLookAt(3.0f, 4.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+
+//        gl.glFrustumf(-0.5f, 0.5f, -0.5f, 0.5f, 1.0f, 100.0f);
+
+
         retrieveMatrix(chunk, values);
         // Order of Matrix(n)
         int n = 3, flag;

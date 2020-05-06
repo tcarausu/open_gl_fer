@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static gl_4.GL_Operations_Lab4_Ex1.setupVectorsAndTriangles;
+import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
 import static utility.GL_lab5_getTandGT.*;
 
 public class GL_Operations_Lab5_Ex1 implements GLEventListener {
@@ -42,12 +43,15 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         final GL2 gl = drawable.getGL().getGL2();
         GLU glu = GLU.createGLU(gl);
 
-
-        gl.glClearColor(0, 1, 0, 0);
+        gl.glClearColor(1, 1, 1, 1);
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
+        glu.gluLookAt(0.0f, 0.0f, 20.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
+        renderScene(gl);
 
-        Mat4 t1 = getT1(original_G);
+//        glu.glutSwapBuffers();
+
+        Mat4 t1 = getT1(original_O);
         System.out.println(printMe("Matrix T1", t1));
 
         Vec3 gt1 = getGT1(original_G, original_O);
@@ -62,7 +66,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         Vec3 gt3 = getGT3(gt2);
         Mat4 t3 = getT3(gt2);
 
-        System.out.println(printMe("Matrix T5", t3));
+        System.out.println(printMe("Matrix T3", t3));
         System.out.println("Vector GT3 - " + gt3 + "\n");
 
         System.out.println(printMe("Matrix T4", getT4()));
@@ -76,8 +80,6 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         System.out.println("getAP xStrophe - " + getAP + "\n");
 
 
-        glu.gluLookAt(3.0f, 4.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        renderScene(gl);
 
     }
 
@@ -99,8 +101,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
 
-        gl.glFrustumf(-0.5f, 0.5f, -0.5f, 0.5f, 1.0f, 100.0f);
-
+        gl.glFrustumf(-1.2f, 1.2f, -1.2f, 1.2f, 1.5f, 30.0f);
         gl.glMatrixMode(GL2.GL_MODELVIEW);
 
         //fullscreen
@@ -108,7 +109,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        triangleLineWithABCDValues = setupVectorsAndTriangles();
+//        triangleLineWithABCDValues = setupVectorsAndTriangles();
 
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
@@ -119,10 +120,6 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(700, 700);
 
-        FPSAnimator animator = new FPSAnimator(glcanvas, 60);
-        animator.start();
-
-        //creating frame
         final JFrame frame = new JFrame("lab5");
         //adding canvas to frame
         frame.getContentPane().add(glcanvas);
@@ -134,79 +131,71 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 
 
     public static void cube(float w, GL2 gl2) {
-        float wp = w / 2.0f;
-
         // top face
         gl2.glBegin(GL.GL_LINE_LOOP);
-        gl2.glVertex3f(-wp, -wp, wp);
-        gl2.glVertex3f(wp, -wp, wp);
-        gl2.glVertex3f(wp, wp, wp);
-        gl2.glVertex3f(-wp, wp, wp);
+        gl2.glVertex3f(-w, -w, w);
+        gl2.glVertex3f(w, -w, w);
+        gl2.glVertex3f(w, w, w);
+        gl2.glVertex3f(-w, w, w);
         gl2.glEnd();
 
         // bottom face
         gl2.glBegin(GL.GL_LINE_LOOP);
-        gl2.glVertex3f(-wp, wp, -wp);
-        gl2.glVertex3f(wp, wp, -wp);
-        gl2.glVertex3f(wp, -wp, -wp);
-        gl2.glVertex3f(-wp, -wp, -wp);
+        gl2.glVertex3f(-w, w, -w);
+        gl2.glVertex3f(w, w, -w);
+        gl2.glVertex3f(w, -w, -w);
+        gl2.glVertex3f(-w, -w, -w);
         gl2.glEnd();
 
         // right face
         gl2.glBegin(GL.GL_LINE_LOOP);
-        gl2.glVertex3f(wp, wp, -wp);
-        gl2.glVertex3f(-wp, wp, -wp);
-        gl2.glVertex3f(-wp, wp, wp);
-        gl2.glVertex3f(wp, wp, wp);
+        gl2.glVertex3f(w, w, -w);
+        gl2.glVertex3f(-w, w, -w);
+        gl2.glVertex3f(-w, w, w);
+        gl2.glVertex3f(w, w, w);
         gl2.glEnd();
 
         // left face
         gl2.glBegin(GL.GL_LINE_LOOP);
-        gl2.glVertex3f(wp, -wp, wp);
-        gl2.glVertex3f(-wp, -wp, wp);
-        gl2.glVertex3f(-wp, -wp, -wp);
-        gl2.glVertex3f(wp, -wp, -wp);
+        gl2.glVertex3f(w, -w, w);
+        gl2.glVertex3f(-w, -w, w);
+        gl2.glVertex3f(-w, -w, -w);
+        gl2.glVertex3f(w, -w, -w);
         gl2.glEnd();
 
         // front face
         gl2.glBegin(GL.GL_LINE_LOOP);
-        gl2.glVertex3f(wp, -wp, -wp);
-        gl2.glVertex3f(wp, wp, -wp);
-        gl2.glVertex3f(wp, wp, wp);
-        gl2.glVertex3f(wp, -wp, wp);
+        gl2.glVertex3f(w, -w, -w);
+        gl2.glVertex3f(w, w, -w);
+        gl2.glVertex3f(w, w, w);
+        gl2.glVertex3f(w, -w, w);
         gl2.glEnd();
 
         // back face
         gl2.glBegin(GL.GL_LINE_LOOP);
-        gl2.glVertex3f(-wp, -wp, wp);
-        gl2.glVertex3f(-wp, wp, wp);
-        gl2.glVertex3f(-wp, wp, -wp);
-        gl2.glVertex3f(-wp, -wp, -wp);
+        gl2.glVertex3f(-w, -w, w);
+        gl2.glVertex3f(-w, w, w);
+        gl2.glVertex3f(-w, w, -w);
+        gl2.glVertex3f(-w, -w, -w);
         gl2.glEnd();
     }
 
-    public static void renderScene(GL2 gl2) {
+
+    static void renderScene(GL2 gl2) {
         gl2.glColor3f(1.0f, 0.2f, 0.2f);
         gl2.glPushMatrix();
-        cube(2, gl2);
+        gl2.glScalef(10.0f, 10.0f, 10.0f);
+        cube(1, gl2);
+        gl2.glPopMatrix();
+        gl2.glColor3f(0.0f, 0.2f, 1.0f);
+        gl2.glPushMatrix();
+        gl2.glTranslatef(10.0f, 0.0f, 0.0f);
+        gl2.glRotatef(30.0f, 0.0f, 0.0f, 1.0f);
+        gl2.glScalef(5.0f, 5.0f, 5.0f);
+        cube(1, gl2);
+
         gl2.glPopMatrix();
     }
-//
-//    static void renderScene(GL2 gl2) {
-//        gl2.glColor3f(1.0f, 0.2f, 0.2f);
-//        gl2.glPushMatrix();
-//        gl2.glScalef(10.0f, 10.0f, 10.0f);
-//        cube(2, gl2);
-//        gl2.glPopMatrix();
-//        gl2.glColor3f(0.0f, 0.2f, 1.0f);
-//        gl2.glPushMatrix();
-//        gl2.glTranslatef(10.0f, 0.0f, 0.0f);
-//        gl2.glRotatef(30.0f, 0.0f, 0.0f, 1.0f);
-//        gl2.glScalef(5.0f, 5.0f, 5.0f);
-//        cube(2, gl2);
-//
-//        gl2.glPopMatrix();
-//    }
 
 
     private String printMe(String title, Mat4 mat4) {
