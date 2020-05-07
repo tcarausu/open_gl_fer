@@ -36,6 +36,9 @@ public class GL_lab5_getTandGT {
         double sinAlphaG = (vec_GT1.y) / (Math.sqrt(Math.pow(vec_GT1.x, 2) + Math.pow(vec_GT1.y, 2)));
         double cosAlphaG = (vec_GT1.x) / (Math.sqrt(Math.pow(vec_GT1.x, 2) + Math.pow(vec_GT1.y, 2)));
 
+
+        // return Matrix Indentity (if x or y is 0)
+
         Vec4 r1T2 = new Vec4(cosAlphaG, -sinAlphaG, 0, 0);
         Vec4 r2T2 = new Vec4(sinAlphaG, cosAlphaG, 0, 0);
         Vec4 r3T2 = new Vec4(0, 0, 1, 0);
