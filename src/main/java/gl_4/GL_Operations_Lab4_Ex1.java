@@ -87,7 +87,6 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
             }
         });
 
-
         gl.glEnd();
 
         gl.glFlush();

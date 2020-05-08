@@ -65,16 +65,16 @@ public class GL_lab5_getTandGT {
         double sinBetaG = (G2.x) / (Math.sqrt(Math.pow(G2.x, 2) + Math.pow(G2.z, 2)));
         double cosBetaG = (G2.z) / (Math.sqrt(Math.pow(G2.x, 2) + Math.pow(G2.z, 2)));
 
-        Vec4 r1T2 = new Vec4(cosBetaG, sinBetaG, 0, 0);
-        Vec4 r2T2 = new Vec4(0, 1, 0, 0);
-        Vec4 r3T2 = new Vec4(-sinBetaG, 0, cosBetaG, 0);
-        Vec4 r4T2 = new Vec4(0, 0, 0, 1);
+        Vec4 r1T3 = new Vec4(cosBetaG, sinBetaG, 0, 0);
+        Vec4 r2T3 = new Vec4(0, 1, 0, 0);
+        Vec4 r3T3 = new Vec4(-sinBetaG, 0, cosBetaG, 0);
+        Vec4 r4T3 = new Vec4(0, 0, 0, 1);
 
         return new Mat4(
-                r1T2.x, r1T2.y, r1T2.z, r1T2.w,
-                r2T2.x, r2T2.y, r2T2.z, r2T2.w,
-                r3T2.x, r3T2.y, r3T2.z, r3T2.w,
-                r4T2.x, r4T2.y, r4T2.z, r4T2.w
+                r1T3.x, r1T3.y, r1T3.z, r1T3.w,
+                r2T3.x, r2T3.y, r2T3.z, r2T3.w,
+                r3T3.x, r3T3.y, r3T3.z, r3T3.w,
+                r4T3.x, r4T3.y, r4T3.z, r4T3.w
         );
     }
 
@@ -88,30 +88,30 @@ public class GL_lab5_getTandGT {
 
 
     public static Mat4 getT4() {
-        Vec4 r1T1 = new Vec4(0, -1, 0, 0);
-        Vec4 r2T1 = new Vec4(1, 0, 0, 0);
-        Vec4 r3T1 = new Vec4(0, 0, 1, 0);
-        Vec4 r4T1 = new Vec4(0, 0, 0, 1);
+        Vec4 r1T4 = new Vec4(0, -1, 0, 0);
+        Vec4 r2T4 = new Vec4(1, 0, 0, 0);
+        Vec4 r3T4 = new Vec4(0, 0, 1, 0);
+        Vec4 r4T4 = new Vec4(0, 0, 0, 1);
 
         return new Mat4(
-                r1T1.x, r1T1.y, r1T1.z, r1T1.w,
-                r2T1.x, r2T1.y, r2T1.z, r2T1.w,
-                r3T1.x, r3T1.y, r3T1.z, r3T1.w,
-                r4T1.x, r4T1.y, r4T1.z, r4T1.w
+                r1T4.x, r1T4.y, r1T4.z, r1T4.w,
+                r2T4.x, r2T4.y, r2T4.z, r2T4.w,
+                r3T4.x, r3T4.y, r3T4.z, r3T4.w,
+                r4T4.x, r4T4.y, r4T4.z, r4T4.w
         );
     }
 
     public static Mat4 getT5() {
-        Vec4 r1T1 = new Vec4(-1, 0, 0, 0);
-        Vec4 r2T1 = new Vec4(0, 1, 0, 0);
-        Vec4 r3T1 = new Vec4(0, 0, 1, 0);
-        Vec4 r4T1 = new Vec4(0, 0, 1, 0);
+        Vec4 r1T5 = new Vec4(-1, 0, 0, 0);
+        Vec4 r2T5 = new Vec4(0, 1, 0, 0);
+        Vec4 r3T5 = new Vec4(0, 0, 1, 0);
+        Vec4 r4T5 = new Vec4(0, 0, 1, 0);
 
         return new Mat4(
-                r1T1.x, r1T1.y, r1T1.z, r1T1.w,
-                r2T1.x, r2T1.y, r2T1.z, r2T1.w,
-                r3T1.x, r3T1.y, r3T1.z, r3T1.w,
-                r4T1.x, r4T1.y, r4T1.z, r4T1.w
+                r1T5.x, r1T5.y, r1T5.z, r1T5.w,
+                r2T5.x, r2T5.y, r2T5.z, r2T5.w,
+                r3T5.x, r3T5.y, r3T5.z, r3T5.w,
+                r4T5.x, r4T5.y, r4T5.z, r4T5.w
         );
     }
 
@@ -145,6 +145,20 @@ public class GL_lab5_getTandGT {
 
 
         return new Vec4(xPStrophe, yPStrophe, zPStrophe, hPStrophe);
+    }
+
+    public static Mat4 projectionMatrix(Vec3 original_O, Vec3 original_G) {
+        Vec4 r1P = new Vec4(1, 0, 0, 0);
+        Vec4 r2P = new Vec4(0, 1, 0, 0);
+        Vec4 r3P = new Vec4(0, 0, 0, 1 / getHDist(original_O, original_G));
+        Vec4 r4P = new Vec4(0, 0, 0, 0);
+
+        return new Mat4(
+                r1P.x, r1P.y, r1P.z, r1P.w,
+                r2P.x, r2P.y, r2P.z, r2P.w,
+                r3P.x, r3P.y, r3P.z, r3P.w,
+                r4P.x, r4P.y, r4P.z, r4P.w
+        );
     }
 
 }
