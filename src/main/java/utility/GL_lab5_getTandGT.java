@@ -27,7 +27,7 @@ public class GL_lab5_getTandGT {
         float zG1 = original_G.z - original_O.z;
 
         return new Vec3(xG1, yG1, zG1);
-    }
+    } 
 
 
     public static Mat4 getT2(Vec3 original_G, Vec3 original_O) {
@@ -65,7 +65,7 @@ public class GL_lab5_getTandGT {
         double sinBetaG = (G2.x) / (Math.sqrt(Math.pow(G2.x, 2) + Math.pow(G2.z, 2)));
         double cosBetaG = (G2.z) / (Math.sqrt(Math.pow(G2.x, 2) + Math.pow(G2.z, 2)));
 
-        Vec4 r1T3 = new Vec4(cosBetaG, sinBetaG, 0, 0);
+        Vec4 r1T3 = new Vec4(cosBetaG, 0, sinBetaG,  0);
         Vec4 r2T3 = new Vec4(0, 1, 0, 0);
         Vec4 r3T3 = new Vec4(-sinBetaG, 0, cosBetaG, 0);
         Vec4 r4T3 = new Vec4(0, 0, 0, 1);
@@ -105,7 +105,7 @@ public class GL_lab5_getTandGT {
         Vec4 r1T5 = new Vec4(-1, 0, 0, 0);
         Vec4 r2T5 = new Vec4(0, 1, 0, 0);
         Vec4 r3T5 = new Vec4(0, 0, 1, 0);
-        Vec4 r4T5 = new Vec4(0, 0, 1, 0);
+        Vec4 r4T5 = new Vec4(0, 0, 0, 1);
 
         return new Mat4(
                 r1T5.x, r1T5.y, r1T5.z, r1T5.w,
@@ -116,7 +116,8 @@ public class GL_lab5_getTandGT {
     }
 
     public static Mat4 matrixT(Mat4 t1, Mat4 t2, Mat4 t3, Mat4 t4, Mat4 t5) {
-        return t1.mul_(t2).mul_(t3).mul_(t4).mul_(t5);
+        //t3.mul_(t2).print();
+    	return t5.mul_(t4).mul_(t3).mul_(t2).mul_(t1);
     }
 
     public static double getHDist(Vec3 original_O, Vec3 original_G) {

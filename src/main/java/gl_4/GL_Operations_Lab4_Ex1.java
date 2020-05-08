@@ -27,7 +27,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
     //setupVariables
 //    private static HashMap<String, ArrayList<Double>> triangleLineWithABCDValues = new HashMap<>();
-    private static HashMap<String, HashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new HashMap<>();
+    private static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new LinkedHashMap<>();
     private static ABCDEquation equation;
     private static List<Vec3> vec3s = new ArrayList<>();
     private static List<Double> elementValues = new ArrayList<>();
@@ -108,8 +108,8 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
     }
 
-    public static HashMap<String, HashMap<ABCDEquation, ArrayList<Vec3>>>  setupVectorsAndTriangles() throws FileNotFoundException {
-        Scanner sc = new Scanner(new File(Constant.kocka));
+    public static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>>  setupVectorsAndTriangles(File fileToTest) throws FileNotFoundException {
+        Scanner sc = new Scanner(fileToTest);
 
         while (sc.hasNext()) {
             String line = sc.nextLine();
@@ -142,7 +142,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                     double polyValue = Double.parseDouble(element);
                     polyValues.add(polyValue);
 
-                    HashMap<ABCDEquation, ArrayList<Vec3>> a_d_eqWithVectors = null;
+                    LinkedHashMap<ABCDEquation, ArrayList<Vec3>> a_d_eqWithVectors = null;
                     if (polyValues.size() % 3 == 0) {
                         int firstPolyValueFromF = (int) polyValues.get(polyElCounter.get()).doubleValue();
                         int sPolyValueFromF = (int) polyValues.get(polyElCounter.get() + 1).doubleValue();
@@ -172,7 +172,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
                         equation = new ABCDEquation(A, B, C, D);
 
-                        a_d_eqWithVectors = new HashMap<>();
+                        a_d_eqWithVectors = new LinkedHashMap<>();
                         a_d_eqWithVectors.put(equation, faceTriangle.getEdgeVectors());
                         polyElCounter.getAndAdd(3);
                     }
@@ -223,7 +223,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
             sc.close();
         } else if (line.equals("N") || line.equals("n")) sc.close();
 
-        setupVectorsAndTriangles();
+        setupVectorsAndTriangles(new File(Constant.kocka));
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas

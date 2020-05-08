@@ -1,7 +1,12 @@
 package utility;
 
+import glm.vec._3.Vec3;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Cube_Render {
 
@@ -74,4 +79,53 @@ public class Cube_Render {
 
         gl2.glPopMatrix();
     }
+//    private static void getVectorValues() throws FileNotFoundException {
+//        Scanner sc = new Scanner(new File(Constant.kocka));
+//
+//        while (sc.hasNext()) {
+//            String line = sc.nextLine();
+//
+//            if (line.startsWith("//") || line.startsWith(" ")
+//                    || line.startsWith("#") || line.startsWith("g ")
+//                    || line.length() == 0) {
+//                continue;
+//            }
+//
+//            if (line.startsWith("v")) {
+//                vectorsTopLine = line.split(" ");
+//                for (String element : vectorsTopLine) {
+//                    if (element.contains("v")) continue;
+//                    double elementValue = Double.parseDouble(element);
+//                    elementValues.add(elementValue);
+//                    if (elementValues.size() % 3 == 0) {
+//                        int firstElValueFromV = (int) elementValues.get(counterElements.get()).doubleValue();
+//                        int secondElValueFromV = (int) elementValues.get(counterElements.get() + 1).doubleValue();
+//                        int thirdElValueFromV = (int) elementValues.get(counterElements.get() + 2).doubleValue();
+//                        Vec3 currentVector = new Vec3(firstElValueFromV, secondElValueFromV, thirdElValueFromV);
+//                        boolean betweenMin1and1 = true;
+//
+//                        if (firstElValueFromV < -1 || firstElValueFromV > 1) {
+//                            betweenMin1and1 = false;
+//                        }
+//                        if (secondElValueFromV < -1 || secondElValueFromV > 1) {
+//                            betweenMin1and1 = false;
+//                        }
+//                        if (thirdElValueFromV < -1 || thirdElValueFromV > 1) {
+//                            betweenMin1and1 = false;
+//                        }
+//
+//                        vec3s.add(currentVector);
+//                        counterElements.getAndAdd(3);
+//
+//
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//        String s = "v";
+//
+//    }
+
 }
