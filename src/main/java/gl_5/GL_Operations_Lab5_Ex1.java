@@ -28,7 +28,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
     private static Vec3 original_G = new Vec3(0, 0, 0); // x,y,z (s)
     private static Vec3 original_O = new Vec3(3, 3, 3); // EYE/OPERATOR // x,y,z (0)
 
-    private static Vec3 teddy_G = new Vec3(20, 20, 20); // x,y,z (s)
+    private static Vec3 teddy_G = new Vec3(20, 20, 50); // x,y,z (s)
     private static Vec3 teddy_O = new Vec3(100, 100, 100); // EYE/OPERATOR // x,y,z (0)
 
     private static List<Vec3> vec3s = new ArrayList<>();
@@ -56,9 +56,9 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 
         gl.glColor3f(0, 0, 0);
 
-        gl.glBegin(gl.GL_LINE_LOOP);
+//        gl.glBegin(gl.GL_LINE_LOOP);
         cubeLab5(triangleLineWithABCDValues, gl);
-        gl.glEnd();
+//        gl.glEnd();
 
         gl.glFlush();
 
@@ -92,6 +92,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
     public static void main(String[] args) throws FileNotFoundException {
 //        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.kocka)); // Cube
         triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teddy)); //Teddy
+//        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teapot)); //Teddy
 
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
@@ -124,6 +125,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 
         triangleLineWithABCDValues.forEach((key, value) -> {
             for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
+                gl.glBegin(gl.GL_LINE_LOOP);
                 ArrayList<Vec3> valueVectors = entry.getValue();
                 // Default Values for the Cube (lab4)
                 Vec3 firstVector = valueVectors.get(0);
@@ -138,7 +140,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
                 gl.glVertex3d(firstM.x, firstM.y, firstM.z);
                 gl.glVertex3d(secondM.x, secondM.y, secondM.z);
                 gl.glVertex3d(thirdM.x, thirdM.y, thirdM.z);
-
+gl.glEnd();
             }
         });
 
