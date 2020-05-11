@@ -66,24 +66,24 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                 gl.glVertex3d(secondVector.x, secondVector.y, secondVector.z);
                 gl.glVertex3d(thirdVector.x, thirdVector.y, thirdVector.z);
 
-                boolean in;
-                if (vec3 != null) {
-                    in = isInsideOf(vec3, equation);
-                }
-                else {
-                    in = isInsideOf(firstVector, equation);
-                }
-                if (in)
-                    System.out.println("Equation with coordinates: ("
-                            + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
-                            + " with Point V with coordinates: (" + firstVector.x + ", "
-                            + firstVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
-                else
-                    System.out.println("Equation: " + equation + " with coordinates: ("
-                            + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
-                            + " with Point V with coordinates: (" + firstVector.x + ", "
-                            + firstVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
-                break;
+//                boolean in;
+//                if (vec3 != null) {
+//                    in = isInsideOf(vec3, equation);
+//                }
+//                else {
+//                    in = isInsideOf(firstVector, equation);
+//                }
+//                if (in)
+//                    System.out.println("Equation with coordinates: ("
+//                            + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
+//                            + " with Point V with coordinates: (" + firstVector.x + ", "
+//                            + firstVector.y + ", " + firstVector.z + ") IS INSIDE OF POLYGON !");
+//                else
+//                    System.out.println("Equation: " + equation + " with coordinates: ("
+//                            + equation.getA() + ", " + equation.getB() + ", " + equation.getC() + ", " + equation.getD() + ") "
+//                            + " with Point V with coordinates: (" + firstVector.x + ", "
+//                            + firstVector.y + ", " + firstVector.z + ") IS NOT INSIDE OF POLYGON");
+//                break;
             }
         });
 
@@ -127,9 +127,9 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
                     double elementValue = Double.parseDouble(element);
                     elementValues.add(elementValue);
                     if (elementValues.size() % 3 == 0) {
-                        int firstElValueFromF = (int) elementValues.get(counterElements.get()).doubleValue();
-                        int sElValueFromF = (int) elementValues.get(counterElements.get() + 1).doubleValue();
-                        int thElValueFromF = (int) elementValues.get(counterElements.get() + 2).doubleValue();
+                        double firstElValueFromF = elementValues.get(counterElements.get());
+                        double sElValueFromF = elementValues.get(counterElements.get() + 1);
+                        double thElValueFromF = elementValues.get(counterElements.get() + 2);
                         vec3s.add(new Vec3(firstElValueFromF, sElValueFromF, thElValueFromF));
                         counterElements.getAndAdd(3);
                     }
@@ -209,19 +209,19 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("Please introduce Vector's values to test:");
-        System.out.println("Do you want to use a manual one?:");
-
-        Scanner sc = new Scanner(System.in);
-        String line = sc.nextLine();
-
-        if (line.equals("Y") || line.equals("y")) {
-            line = sc.next();
-            String[] values = line.split(",");
-            vec3 = new Vec3(Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
-            System.out.println("Testing Values: " + vec3.x + " " + vec3.y + " " + vec3.z);
-            sc.close();
-        } else if (line.equals("N") || line.equals("n")) sc.close();
+//        System.out.println("Please introduce Vector's values to test:");
+//        System.out.println("Do you want to use a manual one?:");
+//
+//        Scanner sc = new Scanner(System.in);
+//        String line = sc.nextLine();
+//
+//        if (line.equals("Y") || line.equals("y")) {
+//            line = sc.next();
+//            String[] values = line.split(",");
+//            vec3 = new Vec3(Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
+//            System.out.println("Testing Values: " + vec3.x + " " + vec3.y + " " + vec3.z);
+//            sc.close();
+//        } else if (line.equals("N") || line.equals("n")) sc.close();
 
         setupVectorsAndTriangles(new File(Constant.kocka));
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
