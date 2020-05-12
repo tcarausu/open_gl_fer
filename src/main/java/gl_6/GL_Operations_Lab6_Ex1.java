@@ -1,44 +1,36 @@
 package gl_6;
 
+import glm.mat._4.Mat4;
+import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
+import jglm.Vec;
+import utility.ABCDEquation;
+import utility.Constant;
 import utility.iPoint2D;
+import utility.iPoint3D;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.glu.GLU;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static gl_4.GL_Operations_Lab4_Ex1.setupVectorsAndTriangles;
 import static java.lang.StrictMath.pow;
-import static javax.media.opengl.GL.GL_LINE_STRIP;
-import static utility.Constant.kocka;
 
 public class GL_Operations_Lab6_Ex1 implements GLEventListener {
     // Chapter 7.3 brazier - Lab6
     // Chapter 7.3 brazier - Lab6
     // Chapter 7.3 brazier - Lab6
 
-    private float t = 1 / 4f;
+    private float incrementalT = 0.05f;
 
-    //    private float b10 = (T1-T0)*t+T0;
-//    private float b11 = (T2-T1)*t+T1;
-//    private float b12 = (T3-T2)*t+T2;
-//
-//    private float b20 = (b11-b10)*t+b10;
-//    private float b21 = (b12-b11)*t+b11;
-//
-//    private float b30 = (b21-b20)*t+b20;
-//
-//    private float b03 = StrictMath.pow(1-t,3);
-//    private float b13 = 3*StrictMath.pow(1-t,2)*t;
-//    private float b23 = 3*(1-t)*StrictMath.pow(t,2);
-//    private float b33 = StrictMath.pow(t,3);
+    private static Vec3 v1 = new Vec3(1, 1, 3);
+    private static Vec3 v2 = new Vec3(1, 2, 3);
+    private static Vec3 v3 = new Vec3(2, 3, 3);
+
     private static String[] vectorsTopLine, trianglePointersLine;
     private static AtomicInteger counterElements = new AtomicInteger();
     private static AtomicInteger polyElCounter = new AtomicInteger();
@@ -46,8 +38,15 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
     private static List<Vec3> vec3s = new ArrayList<>();
     private static List<Double> elementValues = new ArrayList<>();
     private static List<Double> polyValues = new ArrayList<>();
-    private static LinkedList<iPoint2D> points = new LinkedList<>();
-    private static int divs = 50;
+    private static LinkedList<iPoint3D> points3d = new LinkedList<>();
+    private static LinkedList<iPoint2D> points2d;
+    private static LinkedList<Float> pPoints = new LinkedList<>();
+    private static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new LinkedHashMap<>();
+
+    //    private static int divs = 20;
+    private static int divs = 1000;
+    private static iPoint3D p;
+
 
     @Override
     public void display(GLAutoDrawable drawable) {
@@ -57,14 +56,29 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
-        try {
-            LinkedList<iPoint2D> point2DS = getCubeValues(new File(kocka));
-//            drawControlPolygon(point2DS, gl);
-            draw_bezier(point2DS, gl);
-            String s = "s";
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //MD: you need to specify a certain number of points that define
+        //the Bezier curve. This curve specifies how the eye will move
+        //should have three coordinates
+        LinkedList<iPoint3D> point3DS = new LinkedList<>();
+        point3DS.add(new iPoint3D(v1.x, v1.y, v1.z));
+        point3DS.add(new iPoint3D(v2.x, v2.y, v2.z));
+        point3DS.add(new iPoint3D(v3.x, v3.y, v3.z));
+
+
+//        point3DS.add(new iPoint3D(0, 0));
+//        point3DS.add(new iPoint3D(0.2, 0.5));
+//        point3DS.add(new iPoint3D(0.7, 0.3));
+
+//        LinkedHashMap<Integer, LinkedList<iPoint2D>> pointsList =
+        draw_bezier(point3DS, gl);
+//        viewWithEye(gl, pointsList);
+        //MD: here you need to call a similar function as in 5, for the transformation
+        //of the object. However, this time O is not fixed but changes during time,
+        //to trigger an animation. For example at t=0 it is equal to the first point in
+        //the Bezier curve, this O is then used to calculate the transformation matrix and projection
+        //matrix which are then used to transform the object. At the next time point, t=0.05 you do the
+        //same but for the next point in the Bezier curve, and so on until you reach the end
+
     }
 
     @Override
@@ -81,12 +95,10 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
         GL2 gl2 = drawable.getGL().getGL2();
-//        GLU glu = GLU.createGLU(gl2);
 
         gl2.glMatrixMode(GL2.GL_PROJECTION);
         gl2.glLoadIdentity();
 
-//        glu.gluOrtho2D(0.0f, width, 0.0f, height);
         drawable.getGL().getGL2().glOrtho(-1, 1, -1, 1, -1, 10);
 //        drawable.getGL().getGL2().glOrtho(-25, 25, -25, 25, -25, 100);
 
@@ -103,37 +115,27 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         }
     }
 
-    static void drawControlPolygon(LinkedList<iPoint2D> points, GL2 gl2) {
-        gl2.glColor3f(1.0f, 0.0f, 0.0f);
-        gl2.glBegin(GL.GL_LINE_STRIP);
-        for (int i = 0; i < points.size(); i++) {
-            gl2.glVertex2f((float) points.get(i).getX(), (float) points.get(i).getY());
-        }
-        gl2.glEnd();
-        gl2.glColor3f(1.0f, 1.0f, 0.0f);
-        for (int i = 0; i < points.size(); i++) {
-            gl2.glBegin(GL.GL_LINE_LOOP);
-            gl2.glVertex2f((float) points.get(i).getX() - 10, (float) points.get(i).getY() - 10);
-            gl2.glVertex2f((float) points.get(i).getX() - 10, (float) points.get(i).getY() + 10);
-            gl2.glVertex2f((float) points.get(i).getX() + 10, (float) points.get(i).getY() + 10);
-            gl2.glVertex2f((float) points.get(i).getX() + 10, (float) points.get(i).getY() - 10);
-            gl2.glEnd();
-        }
-    }
-
-    private static void draw_bezier(LinkedList<iPoint2D> points, GL2 gl) {
-        iPoint2D p = new iPoint2D();
+    //    private static LinkedHashMap<Integer, LinkedList<Float>> draw_bezier(LinkedList<iPoint3D> points, GL2 gl) {
+    private static void draw_bezier(LinkedList<iPoint3D> points, GL2 gl) {
+//        LinkedHashMap<Integer, LinkedList<Float>> pointsList = new LinkedHashMap<>();
+        LinkedHashMap<Integer, LinkedList<iPoint2D>> pointsList = new LinkedHashMap<>();
         int n = points.size() - 1;
         int[] factors = new int[points.size()];
         double t, b;
-        float px, py;
+        float px, py, pz;
         compute_factors(n, factors);
+
+        //MD: no need to draw this line. Here tou need to collect the points in a list
+        //and return that list. These points specify the position of the eye.
         gl.glColor3f(0.0f, 0.0f, 1.0f);
-        gl.glBegin(GL_LINE_STRIP);
+//        gl.glBegin(GL_LINE_STRIP);
+
         for (int i = 0; i <= divs; i++) {
+            points2d = new LinkedList<>();
             t = 1.0 / divs * i;
             px = 0;
             py = 0;
+            pz = 0;
             for (int j = 0; j <= n; j++) {
                 if (j == 0) {
                     b = factors[j] * pow(1 - t, n);
@@ -144,51 +146,59 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
                 }
                 px += b * points.get(j).getX();
                 py += b * points.get(j).getY();
-                gl.glVertex2f(px, py);
+                pz += b * points.get(j).getZ();
 
             }
+            p = new iPoint3D(px, py, pz);
+//            points2d.add(new iPoint2D(px, py)); (3d)
+            //            gl.glVertex2f(px, py);
         }
-        gl.glEnd();
-//        free(factors);
-//        Runtime.getRuntime().gc();
+
+//        gl.glEnd();
+
+
+//        return pointsList;
     }
 
+    public static void viewWithEye(GL2 gl,
+//                                   list of points, we get from braz
+                                   LinkedHashMap<Integer, LinkedList<iPoint2D>> pointsList,
+                                   LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues) {
+//wihtout mouse listner to see if it displays it properly
+//   i =0; i =100;
+        //cube O  = i (first elem) mouse it will incremenet (recursion) adjsuting the T
+//        Mat4 matrixT = TandGs(cubeO, teddy_G); //G = 0,0,0
+//        clear the screen
+//        redraw
 
-    public static LinkedList<iPoint2D> getCubeValues(File fileToTest) throws FileNotFoundException {
-        Scanner sc = new Scanner(fileToTest);
 
-        while (sc.hasNext()) {
-            String line = sc.nextLine();
+        for (iPoint3D currentPoint : points3d) { // cube points of the cube
+            gl.glBegin(gl.GL_LINE_LOOP);
+            // Default Values for the Cube (lab4)
+//            Vec3 firstVector = valueVectors.get(0);
+//            Vec3 secondVector = valueVectors.get(1);
+//            Vec3 thirdVector = valueVectors.get(2);
+//
+//            // Multiply Matrix T with each of the 3 Vectors
+//            Vec4 firstM = matrixT.mul_(new Vec4(firstVector, 1));
+//            Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
+//            Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
+//
+//
+//            gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
+//            gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
+//            gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
 
-            if (line.startsWith("//") || line.startsWith(" ")
-                    || line.startsWith("#") || line.startsWith("g ")
-                    || line.length() == 0) {
-                continue;
-            }
 
-            if (line.startsWith("v")) {
-                vectorsTopLine = line.split(" ");
-                for (String element : vectorsTopLine) {
-                    if (element.contains("v")) continue;
-                    double elementValue = Double.parseDouble(element);
-                    elementValues.add(elementValue);
-                    if (elementValues.size() % 3 == 0) {
-                        int firstElValueFromF = (int) elementValues.get(counterElements.get()).doubleValue();
-                        int sElValueFromF = (int) elementValues.get(counterElements.get() + 1).doubleValue();
-                        int thElValueFromF = (int) elementValues.get(counterElements.get() + 2).doubleValue();
-                        Vec3 vector = new Vec3(firstElValueFromF, sElValueFromF, thElValueFromF);
-                        vec3s.add(vector);
-                        iPoint2D currentPoint = new iPoint2D(vector.x, vector.y);
-                        points.add(currentPoint);
-                        counterElements.getAndAdd(3);
-                    }
-                }
-            }
+            gl.glEnd();
+
         }
-        return points;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.kocka)); // Cube
+
+
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas

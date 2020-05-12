@@ -6,6 +6,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Cube_Render {
@@ -127,5 +128,75 @@ public class Cube_Render {
 //        String s = "v";
 //
 //    }
+
+
+
+
+
+
+    public static LinkedList<iPoint2D> getCubeValues(File fileToTest) throws FileNotFoundException {
+        Scanner sc = new Scanner(fileToTest);
+
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+
+            if (line.startsWith("//") || line.startsWith(" ")
+                    || line.startsWith("#") || line.startsWith("g ")
+                    || line.length() == 0) {
+                continue;
+            }
+
+
+//            if (line.startsWith("v")) {
+//                vectorsTopLine = line.split(" ");
+//                for (String element : vectorsTopLine) {
+//                    if (element.contains("v")) continue;
+//                    double elementValue = Double.parseDouble(element);
+//                    elementValues.add(elementValue);
+//                    if (elementValues.size() % 3 == 0) {
+//                        double firstElValueFromF = elementValues.get(counterElements.get());
+//                        double sElValueFromF = elementValues.get(counterElements.get() + 1);
+//                        double thElValueFromF = elementValues.get(counterElements.get() + 2);
+//                        vec3s.add(new Vec3(firstElValueFromF, sElValueFromF, thElValueFromF));
+//                        counterElements.getAndAdd(3);
+//                    }
+//                }
+//            }
+        }
+//        return points; //2d
+        return null;
+    }
+
+    static void drawControlPolygon(LinkedList<iPoint2D> points, GL2 gl2) {
+//    private float b10 = (T1-T0)*t+T0;
+//    private float b11 = (T2-T1)*t+T1;
+//    private float b12 = (T3-T2)*t+T2;
+//
+//    private float b20 = (b11-b10)*t+b10;
+//    private float b21 = (b12-b11)*t+b11;
+//
+//    private float b30 = (b21-b20)*t+b20;
+//
+//    private float b03 = StrictMath.pow(1-t,3);
+//    private float b13 = 3*StrictMath.pow(1-t,2)*t;
+//    private float b23 = 3*(1-t)*StrictMath.pow(t,2);
+//    private float b33 = StrictMath.pow(t,3);
+
+        gl2.glColor3f(1.0f, 0.0f, 0.0f);
+        gl2.glBegin(GL.GL_LINE_STRIP);
+        for (int i = 0; i < points.size(); i++) {
+            gl2.glVertex2f((float) points.get(i).getX(), (float) points.get(i).getY());
+        }
+        gl2.glEnd();
+        gl2.glColor3f(1.0f, 1.0f, 0.0f);
+        for (int i = 0; i < points.size(); i++) {
+            gl2.glBegin(GL.GL_LINE_LOOP);
+            gl2.glVertex2f((float) points.get(i).getX() - 10, (float) points.get(i).getY() - 10);
+            gl2.glVertex2f((float) points.get(i).getX() - 10, (float) points.get(i).getY() + 10);
+            gl2.glVertex2f((float) points.get(i).getX() + 10, (float) points.get(i).getY() + 10);
+            gl2.glVertex2f((float) points.get(i).getX() + 10, (float) points.get(i).getY() - 10);
+            gl2.glEnd();
+        }
+    }
 
 }
