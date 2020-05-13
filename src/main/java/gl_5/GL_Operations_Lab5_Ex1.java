@@ -81,7 +81,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 
     public static void main(String[] args) throws FileNotFoundException {
 //        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.kocka)); // Cube
-        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teddy)); //Teddy
+//        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teddy)); //Teddy
 //        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teapot)); //Teddy
 
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
@@ -112,6 +112,10 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         System.out.println("Multiplication of Matrix T with AP");
 //        matrixT.print();
 
+        drawCube(triangleLineWithABCDValues, gl, matrixT);
+    }
+
+    public static void drawCube(LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues, GL2 gl, Mat4 matrixT) {
         triangleLineWithABCDValues.forEach((key, value) -> {
             for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
                 gl.glBegin(gl.GL_LINE_LOOP);
@@ -133,8 +137,6 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 
             }
         });
-
-
     }
 
 
@@ -147,7 +149,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
                 + "| " + mat4.m30 + " " + mat4.m31 + " " + mat4.m32 + " " + mat4.m33 + " |\n";
     }
 
-    private static Mat4 TandGs(Vec3 observer, Vec3 gaze) {
+    public static Mat4 TandGs(Vec3 observer, Vec3 gaze) {
         Mat4 t1 = getT1(observer);
 
         Vec3 gt1 = getGT1(gaze, observer);

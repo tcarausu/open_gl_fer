@@ -200,10 +200,10 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
         if (r == 0)
             isInside = true;
-//        if (r > 0)
-//            return false;
-//        if (r < 0)
-//            return false;
+        if (r > 0)
+            return false;
+        if (r < 0)
+            return true;
 
         return isInside;
     }
