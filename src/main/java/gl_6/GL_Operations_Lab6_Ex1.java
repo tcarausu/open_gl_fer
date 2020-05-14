@@ -1,7 +1,6 @@
 package gl_6;
 
 import com.jogamp.opengl.util.FPSAnimator;
-import gl_5.GL_Operations_Lab5_Ex1;
 import glm.mat._4.Mat4;
 import glm.vec._3.Vec3;
 import glm.vec._4.Vec4;
@@ -12,8 +11,6 @@ import utility.iPoint3D;
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -57,7 +54,7 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
-        viewWithEye(gl,currentIPosition.getAndIncrement());
+        viewWithEye(gl, currentIPosition.getAndIncrement());
         //MD: here you need to call a similar function as in 5, for the transformation
         //of the object. However, this time O is not fixed but changes during time,
         //to trigger an animation. For example at t=0 it is equal to the first point in
@@ -153,7 +150,61 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         //        redraw
         gl.glColor3f(0.0f, 0.0f, 1.0f);
 
-        GL_Operations_Lab5_Ex1.drawCube(triangleLineWithABCDValues, gl, matrixT);
+        triangleLineWithABCDValues.forEach((key, value) -> {
+            for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
+                ABCDEquation equation = entry.getKey();
+                double a = equation.getA();
+                double b = equation.getB();
+                double c = equation.getC();
+                double d = equation.getD();
+
+                double pointX = cubeO.x;
+                double pointY = cubeO.y;
+                double pointZ = cubeO.z;
+
+                double coeff = pointX * a + pointY * b + pointZ * c +  d;
+
+                if(coeff>0 )
+                {
+                //    Draw it
+                    ArrayList<Vec3> valueVectors = entry.getValue();
+                    // Default Values for the Cube (lab4)
+                    Vec3 firstVector = valueVectors.get(0);
+                    Vec3 secondVector = valueVectors.get(1);
+                    Vec3 thirdVector = valueVectors.get(2);
+
+                    // Multiply Matrix T with each of the 3 Vectors
+                    Vec4 firstM = matrixT.mul_(new Vec4(firstVector, 1));
+                    Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
+                    Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
+
+                    gl.glBegin(gl.GL_LINE_LOOP);
+                    gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
+                    gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
+                    gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
+                    gl.glEnd();
+
+                }
+
+//                ArrayList<Vec3> valueVectors = entry.getValue();
+//                // Default Values for the Cube (lab4)
+//                Vec3 firstVector = valueVectors.get(0);
+//                Vec3 secondVector = valueVectors.get(1);
+//                Vec3 thirdVector = valueVectors.get(2);
+//
+//                // Multiply Matrix T with each of the 3 Vectors
+//                Vec4 firstM = matrixT.mul_(new Vec4(firstVector, 1));
+//                Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
+//                Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
+//
+//                gl.glBegin(gl.GL_LINE_LOOP);
+//                gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
+//                gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
+//                gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
+//                gl.glEnd();
+
+            }
+        });
 
     }
 

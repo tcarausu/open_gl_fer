@@ -112,13 +112,8 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
         System.out.println("Multiplication of Matrix T with AP");
 //        matrixT.print();
 
-        drawCube(triangleLineWithABCDValues, gl, matrixT);
-    }
-
-    public static void drawCube(LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues, GL2 gl, Mat4 matrixT) {
         triangleLineWithABCDValues.forEach((key, value) -> {
             for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
-                gl.glBegin(gl.GL_LINE_LOOP);
                 ArrayList<Vec3> valueVectors = entry.getValue();
                 // Default Values for the Cube (lab4)
                 Vec3 firstVector = valueVectors.get(0);
@@ -130,13 +125,17 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
                 Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
                 Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
 
+                gl.glBegin(gl.GL_LINE_LOOP);
                 gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
                 gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
                 gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
                 gl.glEnd();
 
             }
-        });
+        });    }
+
+    public static void drawCube(LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues, GL2 gl, Mat4 matrixT) {
+
     }
 
 
