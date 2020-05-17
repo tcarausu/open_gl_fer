@@ -81,7 +81,7 @@ public class GL_Operations_Lab5_Ex1 implements GLEventListener {
 
     public static void main(String[] args) throws FileNotFoundException {
 //        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.kocka)); // Cube
-//        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teddy)); //Teddy
+        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teddy)); //Teddy
 //        triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.teapot)); //Teddy
 
         final GLProfile profile = GLProfile.get(GLProfile.GL2);

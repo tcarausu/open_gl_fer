@@ -1,4 +1,4 @@
-package gl_6;
+package lab7;
 
 import com.jogamp.opengl.util.FPSAnimator;
 import glm.mat._4.Mat4;
@@ -13,17 +13,14 @@ import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static gl_4.GL_Operations_Lab4_Ex1.setupVectorsAndTriangles;
 import static gl_5.GL_Operations_Lab5_Ex1.TandGs;
 import static java.lang.StrictMath.pow;
 
-public class GL_Operations_Lab6_Ex1 implements GLEventListener {
+public class GL_Operations_Lab7 implements GLEventListener {
     // Chapter 7.3 brazier - Lab6
 
     private float incrementalT = 0.05f;
@@ -75,8 +72,6 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
 
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-        FPSAnimator animator = new FPSAnimator(drawable, 120); // slower ideally would be 75/80 (not 60)
-        animator.start();
 
         GL2 gl2 = drawable.getGL().getGL2();
 
@@ -139,7 +134,8 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         //wihtout mouse listner to see if it displays it properly
         //        int i = 0;
         //        cubeO  = i (first elem) mouse it will incremenet (recursion) adjsuting the T
-        iPoint3D currentPoint = pointsList.get(i);
+//        iPoint3D currentPoint = pointsList.get(i);
+        iPoint3D currentPoint = pointsList.get(pointsList.size()-1);
         cubeO = new Vec3(currentPoint.getX(), currentPoint.getY(), currentPoint.getZ());
 
         Mat4 matrixT = TandGs(cubeO, original_G); //G = 0,0,0
@@ -147,9 +143,19 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         //        redraw
         gl.glColor3f(0.0f, 0.0f, 1.0f);
 
+     /*
+     last Polygon
+
+        List<Map.Entry<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>>> entryList =
+                new ArrayList<>(triangleLineWithABCDValues.entrySet());
+        Map.Entry<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>>lastEntry =
+                entryList.get(entryList.size() - 1);
+        LinkedHashMap<ABCDEquation, ArrayList<Vec3>> entry = lastEntry.getValue();
+     */
         triangleLineWithABCDValues.forEach((key, value) -> {
             for (Map.Entry<ABCDEquation, ArrayList<Vec3>> entry : value.entrySet()) {
                 ABCDEquation equation = entry.getKey();
+
                 double a = equation.getA();
                 double b = equation.getB();
                 double c = equation.getC();
@@ -159,11 +165,10 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
                 double pointY = cubeO.y;
                 double pointZ = cubeO.z;
 
-                double coeff = pointX * a + pointY * b + pointZ * c +  d;
+                double coeff = pointX * a + pointY * b + pointZ * c + d;
 
-                if(coeff>0 )
-                {
-                //    Draw it
+                if (coeff > 0) {
+                    //    Draw it
                     ArrayList<Vec3> valueVectors = entry.getValue();
                     // Default Values for the Cube (lab4)
                     Vec3 firstVector = valueVectors.get(0);
@@ -205,7 +210,7 @@ public class GL_Operations_Lab6_Ex1 implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
-        GL_Operations_Lab6_Ex1 l = new GL_Operations_Lab6_Ex1();
+        GL_Operations_Lab7 l = new GL_Operations_Lab7();
 
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(700, 700);
