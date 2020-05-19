@@ -79,11 +79,11 @@ public class GL_Operation_Lab8_book implements GLEventListener {
 //        z.re = 0;
 //        z.im = 0;
         for (int i = 1; i <= limit; i++) {
-            double next_re = Math.pow(z.getRe(), 2) - Math.pow(z.getIm(), 2) + c.getRe();
-            double next_im = 2 * z.getRe() * z.getIm() + c.getIm();
+            double next_re = Math.pow(z.getComplexReal(), 2) - Math.pow(z.getComplexImag(), 2) + c.getComplexReal();
+            double next_im = 2 * z.getComplexReal() * z.getComplexImag() + c.getComplexImag();
             z.setRe(next_re);
             z.setIm(next_im);
-            double module2 = Math.pow(z.getRe(), 2) + Math.pow(z.getIm(), 2);
+            double module2 = Math.pow(z.getComplexReal(), 2) + Math.pow(z.getComplexImag(), 2);
             if (module2 > 4) return i;
         }
         return -1;

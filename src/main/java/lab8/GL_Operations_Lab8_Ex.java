@@ -33,77 +33,34 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
 
         gl.glClearColor(1, 1, 1, 1);
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        gl.glLoadIdentity();
-
+//        gl.glLoadIdentity();
+        MandelbrotLab(500, 500, 100, 16, gl);
+//        JuliaSetLab(500, 500, 100, 16, gl);
 
     }
 
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-//        FPSAnimator animator = new FPSAnimator(drawable, 120);
-//        animator.start();
-//
         GL2 gl2 = drawable.getGL().getGL2();
 
         gl2.glMatrixMode(GL2.GL_PROJECTION);
         gl2.glLoadIdentity();
 
-        drawable.getGL().getGL2().glOrtho(-5, 5, -5, 5, -5, 10);
+        drawable.getGL().getGL2().glOrtho(0, width - 1, 0, height - 1, 0, 1);
 
         gl2.glMatrixMode(GL2.GL_MODELVIEW);
         gl2.glViewport(0, 0, width, height);
 
         centerX = width >> 1;
         centerY = height >> 1;
-        MandelbrotLab(width, height, 100, 16, gl2);
+        MandelbrotLab(width, height, 2, 16, gl2);
+//        JuliaSetLab(width, height, 2, 16, gl2);
 
         String s = "s";
     }
 
     private static double functionZnSquare(double zN, MandaComplex c) {
-        return Math.pow(zN, 2) + c.getRe(); // the zn1 (formula) what is this C???
-    }
-
-    /**
-     * for each pixel (Px, Py) on the screen do
-     * x0 = scaled x coordinate of pixel (scaled to lie in the Mandelbrot X scale (-2.5, 1))
-     * y0 = scaled y coordinate of pixel (scaled to lie in the Mandelbrot Y scale (-1, 1))
-     * x := 0.0
-     * y := 0.0
-     * iteration := 0
-     * max_iteration := 1000
-     * while (x×x + y×y ≤ 2×2 AND iteration < max_iteration) do
-     * xtemp := x×x - y×y + x0
-     * y := 2×x×y + y0
-     * x := xtemp
-     * iteration := iteration + 1
-     * <p>
-     * color := palette[iteration]
-     * plot(Px, Py, color)
-     */
-    public static void MandelbrotWiki(int width, int height) {
-
-//        double x0 = scaled x coordinate of pixel (scaled to lie in the Mandelbrot X scale(-2.5, 1))
-//        double y0 = scaled y coordinate of pixel (scaled to lie in the Mandelbrot Y scale(-1, 1))
-        double x = 0.0;
-        double y = 0.0;
-        double iteration = 0;
-        double max_iteration = 1000; // is this m?
-        double xtemp;
-        double eps; // what do i set here?
-
-        while (((Math.pow(x, 2) + Math.pow(y, 2)) <= Math.pow(2, 2))
-                && iteration < max_iteration) {
-            xtemp = (Math.pow(x, 2) - Math.pow(y, 2)) + x0;
-            y = 2 * x * y + y0;
-            x = xtemp;
-            iteration = iteration + 1;
-        }
-
-//        color = palette[iteration];
-//        plot(Px, Py, color);
-
-
+        return Math.pow(zN, 2) + c.getComplexReal(); // the zn1 (formula) what is this C???
     }
 
     public static void MandelbrotLab(int width, int height, double eps, double m, GL2 gl) {
@@ -113,27 +70,70 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         MandaComplex c = new MandaComplex(0, 0);
         //Color based on pixel
         gl.glBegin(GL.GL_POINTS);
-        for (int i = (int) x0; i < width; i++) {
-            for (int j = (int) y0; j < height; j++) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 u0 = retrieveU0(plane.getUmax(), plane.getUmin(), width, i);
                 v0 = retrieveY0(plane.getVmax(), plane.getVmin(), height, j);
-
-                double k = -1;
+                //System.out.println(u0 + " " + v0);
+                float k = -1;
                 double cReal = u0;
                 double cImag = v0;
-                double z0 = 0;
+                double zReal = 0;
+                double zImag = 0;
+
                 double r = 0;
                 while (r < eps && k < m) {
                     k += 1;
-//                  what is the value of Zn? (where do I get it from?)
-//                    double zN = 0;
-                    // what is the value of Zn? (where do I get it from?)
-                    double zN = Math.sqrt(Math.pow(u0, 2) + Math.pow(v0, 2));
-                    double zN1 = functionZnSquare(zN, c);
-                    r = Math.sqrt(Math.pow(cReal, 2) + Math.pow(cImag, 2));//r = Math.sqrt(Math.pow(zreal, 2) + Math.pow(zimag, 2));
-                    String s = "s";
+                    double zRealNew = cReal +Math.pow(zReal, 2) - Math.pow(zImag, 2) ;
+                    double zImagNew = cImag + zReal * zImag * 2;
+                    zReal = zRealNew;
+                    zImag = zImagNew;
+                    r = Math.sqrt(Math.pow(zReal, 2) + Math.pow(zImag, 2));
+
                 }
-                gl.glVertex3f(i, j, (float) k); //    x0,y0,k ? = i,j,k ?
+                System.out.println(k);
+                gl.glColor3f(k / 16, k / 16, k / 16);
+                //gl.glColor3f(255,,0);
+                gl.glVertex2i(i, j); //    x0,y0,k ? = i,j,k ?
+            }
+        }
+        gl.glEnd();
+
+
+    }
+    public static void JuliaSetLab(int width, int height, double eps, double m, GL2 gl) {
+        MandelbrotPlane plane = new MandelbrotPlane(-1, 1, -1.2, 1.2, 16, 100);
+        gl.glPointSize(1.0f);
+
+        MandaComplex c = new MandaComplex(0.32, 0.043);
+        //Color based on pixel
+        gl.glBegin(GL.GL_POINTS);
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                u0 = retrieveU0(plane.getUmax(), plane.getUmin(), width, i);
+                v0 = retrieveY0(plane.getVmax(), plane.getVmin(), height, j);
+                //System.out.println(u0 + " " + v0);
+                float k = -1;
+                double zReal = u0;
+                double zImag = v0;
+
+                double cReal = c.getComplexReal();
+                double cImag = c.getComplexImag();
+
+                double r = 0;
+                while (r < eps && k < m) {
+                    k += 1;
+                    double zRealNew = cReal +Math.pow(zReal, 2) - Math.pow(zImag, 2) ;
+                    double zImagNew = cImag + zReal * zImag * 2;
+                    zReal = zRealNew;
+                    zImag = zImagNew;
+                    r = Math.sqrt(Math.pow(zReal, 2) + Math.pow(zImag, 2));
+
+                }
+                System.out.println(k);
+                gl.glColor3f(k / 16, k / 16, k / 16);
+                //gl.glColor3f(255,,0);
+                gl.glVertex2i(i, j); //    x0,y0,k ? = i,j,k ?
             }
         }
         gl.glEnd();
@@ -160,7 +160,7 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         GL_Operations_Lab8_Ex l = new GL_Operations_Lab8_Ex();
 
         glcanvas.addGLEventListener(l);
-        glcanvas.setSize(640, 800);
+        glcanvas.setSize(500, 500);
 
         final JFrame frame = new JFrame("lab8");
         //adding canvas to frame

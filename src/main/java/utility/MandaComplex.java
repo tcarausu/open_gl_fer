@@ -17,7 +17,7 @@ public class MandaComplex {
     public MandaComplex() {
     }
 
-    public double getRe() {
+    public double getComplexReal() {
         return re;
     }
 
@@ -25,7 +25,7 @@ public class MandaComplex {
         this.re = re;
     }
 
-    public double getIm() {
+    public double getComplexImag() {
         return im;
     }
 
@@ -44,4 +44,5 @@ public class MandaComplex {
         //returning the output complex number
         return temp;
     }
+
 }
