@@ -32,4 +32,16 @@ public class MandaComplex {
     public void setIm(double im) {
         this.im = im;
     }
+
+    public static MandaComplex sum(MandaComplex c1, MandaComplex c2)
+    {
+        //creating a temporary complex number to hold the sum of two numbers
+        MandaComplex temp = new MandaComplex(0, 0);
+
+        temp.re = c1.re + c2.re;
+        temp.im = c1.im + c2.im;
+
+        //returning the output complex number
+        return temp;
+    }
 }

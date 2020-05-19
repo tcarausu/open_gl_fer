@@ -7,7 +7,6 @@ import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
 import static javax.media.opengl.GL.GL_POINTS;
-import static lab8.GL_Operations_Lab8_Ex.divergence_test;
 
 public class GL_Operation_Lab8_book implements GLEventListener {
     private static double xmin = 0;
@@ -53,6 +52,43 @@ public class GL_Operation_Lab8_book implements GLEventListener {
 
     }
 
+    /**
+     * typedef struct {
+     * double re;
+     * double im;
+     * }
+     * complex;
+     * public static int divergence_test (complex c,int limit){
+     * complex z;
+     * z.re = 0;
+     * z.im = 0;
+     * for (int i = 1; i <= limit; i++) {
+     * double next_re = z.re * z.re - z.im * z.im + c.re;
+     * double next_im = 2*z.re*z.im + c.im;
+     * z.re = next_re;
+     * z.im = next_im;
+     * double modul2 = z.re*z.re +z.im*z.im;
+     * if (modul2 > 4) return i;
+     * }
+     * return -1;
+     * }
+     */
+
+    public static int divergence_test(MandaComplex c, int limit) {
+        MandaComplex z = new MandaComplex(0, 0);
+//        z.re = 0;
+//        z.im = 0;
+        for (int i = 1; i <= limit; i++) {
+            double next_re = Math.pow(z.getRe(), 2) - Math.pow(z.getIm(), 2) + c.getRe();
+            double next_im = 2 * z.getRe() * z.getIm() + c.getIm();
+            z.setRe(next_re);
+            z.setIm(next_im);
+            double module2 = Math.pow(z.getRe(), 2) + Math.pow(z.getIm(), 2);
+            if (module2 > 4) return i;
+        }
+        return -1;
+    }
+
     void renderScene(GL2 gl) {
         gl.glPointSize(1);
         gl.glBegin(GL_POINTS);
@@ -71,10 +107,10 @@ public class GL_Operation_Lab8_book implements GLEventListener {
                 gl.glVertex2d(x, y);
             }
         }
-        gl. glEnd();
+        gl.glEnd();
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);

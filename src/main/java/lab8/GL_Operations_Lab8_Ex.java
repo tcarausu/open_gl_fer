@@ -13,6 +13,8 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
     private static final double y0 = 0;
     private static double u0;
     private static double v0;
+    private static double centerX;
+    private static double centerY;
 
     @Override
     public void init(GLAutoDrawable drawable) {
@@ -51,17 +53,14 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         gl2.glMatrixMode(GL2.GL_MODELVIEW);
         gl2.glViewport(0, 0, width, height);
 
-        MandelbrotPlane plane = new MandelbrotPlane(-1.5, 0.5, -1, 1, 16, 100);
-        u0 = retrieveU0(plane.getUmax(), plane.getUmin(), width, x0);
-        v0 = retrieveY0(plane.getVmax(), plane.getVmin(), height, y0);
-
-
-        MandelbrotLab(width, height, u0, v0, 100, 16);
+        centerX = width >> 1;
+        centerY = height >> 1;
+        MandelbrotLab(width, height, 100, 16, gl2);
 
         String s = "s";
     }
 
-    private static double functionZ(double zN, MandaComplex c) {
+    private static double functionZnSquare(double zN, MandaComplex c) {
         return Math.pow(zN, 2) + c.getRe(); // the zn1 (formula) what is this C???
     }
 
@@ -107,11 +106,18 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
 
     }
 
-    public static void MandelbrotLab(int width, int height, double u0, double v0, double eps, double m) {
-        MandaComplex c = new MandaComplex(0, 0);
+    public static void MandelbrotLab(int width, int height, double eps, double m, GL2 gl) {
+        MandelbrotPlane plane = new MandelbrotPlane(-1.5, 0.5, -1, 1, 16, 100);
+        gl.glPointSize(1.0f);
 
+        MandaComplex c = new MandaComplex(0, 0);
+        //Color based on pixel
+        gl.glBegin(GL.GL_POINTS);
         for (int i = (int) x0; i < width; i++) {
             for (int j = (int) y0; j < height; j++) {
+                u0 = retrieveU0(plane.getUmax(), plane.getUmin(), width, i);
+                v0 = retrieveY0(plane.getVmax(), plane.getVmin(), height, j);
+
                 double k = -1;
                 double cReal = u0;
                 double cImag = v0;
@@ -119,14 +125,18 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
                 double r = 0;
                 while (r < eps && k < m) {
                     k += 1;
-                    double zN = 0;// what do i have here??
-                    double zN1 = functionZ(zN, c);
+//                  what is the value of Zn? (where do I get it from?)
+//                    double zN = 0;
+                    // what is the value of Zn? (where do I get it from?)
+                    double zN = Math.sqrt(Math.pow(u0, 2) + Math.pow(v0, 2));
+                    double zN1 = functionZnSquare(zN, c);
                     r = Math.sqrt(Math.pow(cReal, 2) + Math.pow(cImag, 2));//r = Math.sqrt(Math.pow(zreal, 2) + Math.pow(zimag, 2));
                     String s = "s";
                 }
+                gl.glVertex3f(i, j, (float) k); //    x0,y0,k ? = i,j,k ?
             }
-
         }
+        gl.glEnd();
 
 
     }
@@ -138,44 +148,6 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
 
     public static void MandelbrotBook() {
 
-    }
-
-
-    /**
-     * typedef struct {
-     * double re;
-     * double im;
-     * }
-     * complex;
-     * public static int divergence_test (complex c,int limit){
-     * complex z;
-     * z.re = 0;
-     * z.im = 0;
-     * for (int i = 1; i <= limit; i++) {
-     * double next_re = z.re * z.re - z.im * z.im + c.re;
-     * double next_im = 2*z.re*z.im + c.im;
-     * z.re = next_re;
-     * z.im = next_im;
-     * double modul2 = z.re*z.re +z.im*z.im;
-     * if (modul2 > 4) return i;
-     * }
-     * return -1;
-     * }
-     */
-
-    public static int divergence_test(MandaComplex c, int limit) {
-        MandaComplex z = new MandaComplex(0, 0);
-//        z.re = 0;
-//        z.im = 0;
-        for (int i = 1; i <= limit; i++) {
-            double next_re = Math.pow(z.getRe(), 2) - Math.pow(z.getIm(), 2) + c.getRe();
-            double next_im = 2 * z.getRe() * z.getIm() + c.getIm();
-            z.setRe(next_re);
-            z.setIm(next_im);
-            double module2 = Math.pow(z.getRe(), 2) + Math.pow(z.getIm(), 2);
-            if (module2 > 4) return i;
-        }
-        return -1;
     }
 
     public static void main(String[] args) {
@@ -197,6 +169,9 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        centerX = screenSize.getWidth() / 2;
+//        centerY = screenSize.getHeight() / 2;
     }
 
     private static double retrieveU0(double umax, double umin, double xmax, double x0) {
