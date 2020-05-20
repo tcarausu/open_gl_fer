@@ -9,12 +9,11 @@ import javax.swing.*;
 
 public class GL_Operations_Lab8_Ex implements GLEventListener {
 
-    private static final double x0 = 0;
-    private static final double y0 = 0;
     private static double u0;
     private static double v0;
     private static double centerX;
     private static double centerY;
+    private static int maxLimit = 128;
 
     @Override
     public void init(GLAutoDrawable drawable) {
@@ -34,8 +33,8 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         gl.glClearColor(1, 1, 1, 1);
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
 //        gl.glLoadIdentity();
-        MandelbrotLab(500, 500, 100, 16, gl);
-//        JuliaSetLab(500, 500, 100, 16, gl);
+//        MandelbrotLab(500, 500, 100, 16, gl);
+        JuliaSetLab(500, 500, 100, 16, gl);
 
     }
 
@@ -53,8 +52,8 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
 
         centerX = width >> 1;
         centerY = height >> 1;
-        MandelbrotLab(width, height, 2, 16, gl2);
-//        JuliaSetLab(width, height, 2, 16, gl2);
+//        MandelbrotLab(width, height, 2, 16, gl2);
+        JuliaSetLab(width, height, 2, 16, gl2);
 
         String s = "s";
     }
@@ -91,7 +90,7 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
                     r = Math.sqrt(Math.pow(zReal, 2) + Math.pow(zImag, 2));
 
                 }
-                System.out.println(k);
+//                System.out.println(k);
                 gl.glColor3f(k / 16, k / 16, k / 16);
                 //gl.glColor3f(255,,0);
                 gl.glVertex2i(i, j); //    x0,y0,k ? = i,j,k ?
@@ -130,9 +129,10 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
                     r = Math.sqrt(Math.pow(zReal, 2) + Math.pow(zImag, 2));
 
                 }
-                System.out.println(k);
-                gl.glColor3f(k / 16, k / 16, k / 16);
-                //gl.glColor3f(255,,0);
+//                System.out.println(k);
+//                gl.glColor3f(k / 16, k / 16, k / 16);
+                colorMap((int) k, gl);
+
                 gl.glVertex2i(i, j); //    x0,y0,k ? = i,j,k ?
             }
         }
@@ -148,6 +148,23 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
 
     public static void MandelbrotBook() {
 
+    }
+
+    public static void colorMap(int n, GL2 gl2) {
+        if (n == -1) {
+            gl2.glColor3f(0f, 0f, 0f);
+        } else if (maxLimit < 16) {
+            int r = (int) ((n-1) / (double) (maxLimit - 1) * 255 + 0.5);
+            int g = 255 - r;
+            int b = ((n-1) % (maxLimit / 2)) * 255 / (maxLimit / 2);
+            gl2.glColor3f( (r / 255f),  (g / 255f),  (b / 255f));
+        } else {
+            int lim = Math.min(maxLimit, 32);
+            int r = (n-1) * 255 / lim;
+            int g = ((n-1) % (lim / 4)) * 255 / (lim / 4);
+            int b = ((n-1) % (lim / 8)) * 255 / (lim / 8);
+            gl2.glColor3f( (r / 255f), (g / 255f),  (b / 255f));
+        }
     }
 
     public static void main(String[] args) {

@@ -1,11 +1,14 @@
 package utility;
 
+import glm.vec._3.Vec3;
+
 public class ABCDEquation {
 
     private double A;
     private double B;
     private double C;
     private double D;
+    private Vec3 normal;
 
     public ABCDEquation() {
     }
@@ -15,6 +18,7 @@ public class ABCDEquation {
         B = b;
         C = c;
         D = d;
+        normal = new Vec3(A,B,C);
     }
 
     public double getA() {
@@ -47,5 +51,13 @@ public class ABCDEquation {
 
     public void setD(double d) {
         D = d;
+    }
+
+    public Vec3 getNormal() {
+        return normal;
+    }
+
+    public void setNormal(Vec3 normal) {
+        this.normal = normal;
     }
 }
