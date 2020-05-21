@@ -9,6 +9,9 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import static java.lang.Math.sqrt;
+import static java.lang.StrictMath.pow;
+
 public class Cube_Render {
 
 
@@ -131,6 +134,59 @@ public class Cube_Render {
 
 
 
+
+    //  void __fastcall TForm1:: Button3Click (TObject ∗ Sender)
+    public static void fastcall() {
+        int x, y;
+        double z, I, Id, Is;
+        final int R = 100;
+        double nx, ny, nz;
+        double lx, ly, lz, rx, ry, rz, l_n_2, vx, vy, vz, naz;
+        lx = 1;
+        ly = 0;
+        lz = 1;
+        naz = sqrt(lx * lx + ly * ly + lz * lz);
+        lx = lx / naz;
+        ly = ly / naz;
+        lz = lz / naz;
+        vx = 0;
+        vy = 0;
+        vz = 1;
+        for (x = -R; x <= R; x++) {
+            for (y = -R; y <= R; y++) {
+                z = R * R - (x * x + y * y);
+                if (z < 0) continue;
+
+                z = sqrt(z);
+                nz = R;
+                nx = x / nz;
+                ny = y / nz;
+                nz = z / nz;
+
+                Id = lx * nx + ly * ny + lz * nz;
+                l_n_2 = 2 * Id;
+
+                if (Id > 0) {
+                    Id = 200 * Id;
+                } else Id = 0;
+
+                rx = l_n_2 * nx - lx;
+                ry = l_n_2 * ny - ly;
+                rz = l_n_2 * nz - lz;
+
+                naz = sqrt(rx * rx + ry * ry + rz * rz);
+                rx = rx / naz;
+                ry = ry / naz;
+                rz = rz / naz;
+                Is = rx * vx + ry * vy + rz * vz;
+                if (Is > 0.) {
+                    Is = 45 * pow(Is, 80);
+                } else Is = 0;
+                I = 10 + Id + Is;
+//                Image1−>Canvas−>Pixels[x + 150][-y + 150] = RGB(I, I / 2, I);
+            }
+        }
+    }
 
 
 
