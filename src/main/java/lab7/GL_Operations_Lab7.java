@@ -24,7 +24,7 @@ import static java.lang.StrictMath.pow;
 
 public class GL_Operations_Lab7 implements GLEventListener {
     private static float IaRed, IaGreen, IaBlue;
-    private static float IiRed, IiGreen, IiBlue;
+    private static float IdRed, IdGreen, IdBlue;
     private static float IrRed, IrGreen, IrBlue;
 
     private static float kaRed, kaGreen, kaBlue;
@@ -34,13 +34,14 @@ public class GL_Operations_Lab7 implements GLEventListener {
 
     private static float illuminationRed, illuminationGreen, illuminationBlue;
 
-    private static final float indexOfRoughnessN = 100f;
+    private static final float indexOfRoughnessN = 96f;
 
     private static final Vec3 v1 = new Vec3(1, 1, 3);
     private static final Vec3 v2 = new Vec3(1, 2, 3);
     private static final Vec3 v3 = new Vec3(2, 3, 3);
     private static final Vec3 original_G = new Vec3(0, 0, 0); // x,y,z (s)
     private static Vec3 cubeO; // x,y,z (s)
+    private static final Vec3 lightSource = new Vec3(3, 3, 3);
     private static final Vec3 lightVector = new Vec3(4, 5, 3);
 
     private static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new LinkedHashMap<>();
@@ -87,11 +88,11 @@ public class GL_Operations_Lab7 implements GLEventListener {
 
         IaGreen = IaBlue = 0.1f;
 
-        IiRed = 0.8f;
+        IdRed = 0.8f;
 
-        IiGreen = 0.15f;
+        IdGreen = 0.15f;
 
-        IiBlue = 0f;
+        IdBlue = 0f;
 
         IrRed = IrGreen = 0.2f;
 
@@ -225,7 +226,7 @@ public class GL_Operations_Lab7 implements GLEventListener {
                     Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
                     Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
 
-//                    calculateIntensity(centerOfPolygon,equation.getNormal());
+                    calculateIntensity(centerOfPolygon,equation.getNormal());
 
 
                     gl.glBegin(gl.GL_LINE_LOOP);
@@ -252,67 +253,60 @@ public class GL_Operations_Lab7 implements GLEventListener {
     }
 
 
-//    private static void calculateIntensity(Vec3 centralPoint, Vec3 normal) {
-//        float Igr, Igg, Igb, Idr, Idg, Idb, Isr, Isg, Isb;
-//
-//        //Ambient Component?
-//        Igr = IaRed * kaRed;
-//        Igg = IaGreen * kaGreen;
-//        Igb = IaBlue * kaBlue;
-//
-//        Vec3 vectorL = new Vec3(lightVector.x - centralPoint.x, lightVector.y - centralPoint.y, lightVector.z - centralPoint.z);
-//
-//        float cosId = (float) vectorL * normal;
-//        if (cosId < 0) {
-//            cosId = 0;
-//        }
-//
-//        //Diffuse Component?
-//        Idr = IiRed * kdRed * cosId;
-//        Idg = IiGreen * kdGreen * cosId;
-//        Idb = IiBlue * kdBlue * cosId;
-//
-//        Vec3 r = reflectedVector(vectorL, normal);
-//        Vec3 v = new Vec3(cubeO.x - centralPoint.x, cubeO.y - centralPoint.y, cubeO.z - centralPoint.z);
-//
-//        float cosIs = (float) r.cosine(v);
-///*`
-//        //Specular Component?
-//        Isr = IiRed * krRed * (float) Math.pow(cosalpha, n);
-//        Isg = IiGreen * krGreen * (float) Math.pow(cosalpha, n);
-//        Isb = IiBlue * krBlue * (float) Math.pow(cosalpha, n);
-//
-//        */
-//
-//        //Specular Component?
-//        Isr = IiRed * ksRed * (float) Math.pow(cosIs, indexOfRoughnessN);
-//        Isg = IiGreen * ksGreen * (float) Math.pow(cosIs, indexOfRoughnessN);
-//        Isb = IiBlue * ksBlue * (float) Math.pow(cosIs, indexOfRoughnessN);
-///*
-//
-//        //Specular Component?
-//        Isr = IrRed * krRed * (float) Math.pow(cosalpha, n);
-//        Isg = IrGreen * krGreen * (float) Math.pow(cosalpha, n);
-//        Isb = IrBlue * krBlue * (float) Math.pow(cosalpha, n);
-//
-//*/
-//        illuminationRed = Igr + Idr + Isr;
-//        illuminationGreen = Igg + Idg + Isg;
-//        illuminationBlue = Igb + Idb + Isb;
-//    }
+    private static void calculateIntensity(Vec3 centralPoint, Vec3 normal) {
+        float Igr, Igg, Igb, Idr, Idg, Idb, Isr, Isg, Isb;
 
-//    static Vec3 reflectedVector(Vec3 m, Vec3 n) {
-//        Vec3 r = null;
-//        try {
-//            r = n.nScalarMultiply(2).nScalarMultiply(1f / n.norm());
-//            r = r.nScalarMultiply(m.scalarProduct(n));
-//            r = r.nScalarMultiply(1f / n.norm());
-//            r = r.nSub(m);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return r;
-//    }
+        //Ambient Component?
+        Igr = IaRed * kaRed;
+        Igg = IaGreen * kaGreen;
+        Igb = IaBlue * kaBlue;
+
+
+        //TODO        what is the right one from these 3?
+        //3.(3),4,2.(6)
+        Vec3 vectorL = new Vec3(lightVector.x - centralPoint.x, lightVector.y - centralPoint.y, lightVector.z - centralPoint.z);
+//        Vec3 vectorL = lightVector.sub_(centralPoint); //3.(3),2.(6),0
+//        Vec3 vectorL = lightVector.sub(centralPoint); //3.(3),2.(6),3
+
+        Vec3 prodCosId = normal.mul_(vectorL);
+        //TODO how do I get a double/int
+        //Diffuse Component?
+        Idr = IdRed * kdRed * prodCosId;
+        Idg = IdGreen * kdGreen * prodCosId;
+        Idb = IdBlue * kdBlue * prodCosId;
+
+        Vec3 r = reflectedV(vectorL, centralPoint, normal);
+        Vec3 v = new Vec3(cubeO.x - centralPoint.x, cubeO.y - centralPoint.y, cubeO.z - centralPoint.z);
+//        Vec3 v = cubeO.sub(centralPoint);
+
+        Vec3 prodCosIs = r.mul_(v);
+
+        //Specular Component?
+        Isr = IrRed * ksRed * (float) Math.pow(prodCosIs, indexOfRoughnessN);
+        Isg = IrGreen * ksGreen * (float) Math.pow(prodCosIs, indexOfRoughnessN);
+        Isb = IrBlue * ksBlue * (float) Math.pow(prodCosIs, indexOfRoughnessN);
+
+        illuminationRed = Igr + Idr + Isr;
+        illuminationGreen = Igg + Idg + Isg;
+        illuminationBlue = Igb + Idb + Isb;
+    }
+
+    private static Vec3 reflectedV(Vec3 lightV, Vec3 center, Vec3 normal) {
+
+        Vec3 eye = new Vec3(3, 4, 1);  //or do I use here v1 as I used for CubeO?
+        Vec3 eyeVec = eye.sub_(center); //the vector from the eye to the center of polygon
+        eyeVec.normalize_(); // normalise all the vectors!
+        Vec3 lightVec = lightV.sub_(center); // the L vector, as denoted previously
+        lightVec.normalize_(); //normalise
+
+//        Vec3 r = Vec3.Sub((2 * Vector3.Dot(normal, lightVec)) * normal, lightVec); // r is the reflected vector
+        Vec3 dotted = normal.mul(normal.dot(lightV)).mul(2);
+        Vec3 r = dotted.sub_(lightVec); // r is the reflected vector
+// here you can see the equation for it as well https://www.fabrizioduroni.it/2017/08/25/how-to-calculate-reflection-vector.html
+
+        r.normalize_();
+        return r;
+    }
 
 
     static Vec3 getCentralPoint(Vec3 V1, Vec3 V2, Vec3 V3) {
@@ -345,7 +339,7 @@ public class GL_Operations_Lab7 implements GLEventListener {
         glcanvas.setSize(700, 700);
 
 
-        final JFrame frame = new JFrame("lab6");
+        final JFrame frame = new JFrame("lab7");
         //adding canvas to frame
         frame.getContentPane().add(glcanvas);
         frame.setSize(frame.getContentPane().getPreferredSize());

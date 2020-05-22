@@ -58,10 +58,6 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         String s = "s";
     }
 
-    private static double functionZnSquare(double zN, MandaComplex c) {
-        return Math.pow(zN, 2) + c.getComplexReal(); // the zn1 (formula) what is this C???
-    }
-
     public static void MandelbrotLab(int width, int height, double eps, double m, GL2 gl) {
         MandelbrotPlane plane = new MandelbrotPlane(-1.5, 0.5, -1, 1, 16, 100);
         gl.glPointSize(1.0f);
@@ -186,9 +182,6 @@ public class GL_Operations_Lab8_Ex implements GLEventListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//        centerX = screenSize.getWidth() / 2;
-//        centerY = screenSize.getHeight() / 2;
     }
 
     private static double retrieveU0(double umax, double umin, double xmax, double x0) {
