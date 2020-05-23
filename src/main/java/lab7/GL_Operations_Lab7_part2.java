@@ -41,7 +41,7 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
     private static final Vec3 v3 = new Vec3(2, 3, 3);
     private static final Vec3 original_G = new Vec3(0, 0, 0); // x,y,z (s)
     private static Vec3 cubeO; // x,y,z (s)
-    private static final Vec3 lightSource = new Vec3(2, 3, 0);
+    private static final Vec3 lightSource = new Vec3(-4, 3, 3);
 //    private static final Vec3 lightVector = new Vec3(4, 5, 3);//MD not needed
 
     private static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new LinkedHashMap<>();
@@ -244,31 +244,27 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
 
 
                     Vec3 firstNormalizedAvgVec = getNormalValues(vectorWithFaces, firstVector);
-//                    calculateIntensity(firstVector,  equation.getNormal());
                     calculateIntensity(firstVector, firstNormalizedAvgVec);
 
                     //   (from what I understood I have to use the red from vec1)
-                    double finalIlRed = illuminationRed;//use this
-                    double finalIlGreen = illuminationGreen;
-                    double finalIlBlue = illuminationBlue;
+                    double vec1Red = illuminationRed;//use this
+                    double vec1Green = illuminationGreen;
+                    double vec1Blue = illuminationBlue;
 
                     Vec3 secondNormalizedAvgVec = getNormalValues(vectorWithFaces, secondVector);
-//                    calculateIntensity(secondNormalizedAvgVec, equation.getNormal());
                     calculateIntensity(secondVector, secondNormalizedAvgVec);
 
                     //   (from what I understood I have to use the green from vec2)
-                    double finalIl1Red = illuminationRed;
-                    double finalIl1Green = illuminationGreen;//use this
-                    double finalIl1Blue = illuminationBlue;
+                    double vec2Red = illuminationRed;
+                    double vec2Green = illuminationGreen;//use this
+                    double vec2Blue = illuminationBlue;
 
                     Vec3 thirdNormalizedAvgVec = getNormalValues(vectorWithFaces, thirdVector);
-//                    calculateIntensity(thirdNormalizedAvgVec, equation.getNormal());
                     calculateIntensity(thirdVector, thirdNormalizedAvgVec);
 
-                    //   (from what I understood I have to use the blue from vec3)
-                    double finalIl2Red = illuminationRed;
-                    double finalIl2Green = illuminationGreen;
-                    double finalIl2Blue = illuminationBlue; //use this
+                    double vec3Red = illuminationRed;
+                    double vec3Green = illuminationGreen;
+                    double vec3Blue = illuminationBlue; //use this
 
 
                     //MD> main difference will be here. you need to find all polygons
@@ -281,18 +277,17 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
 
 
                     gl.glBegin(gl.GL_POLYGON);
-//                    gl.glColor3f(illuminationRed, 0, 0);
-                    //assuming we use all 3 colors
-                    gl.glColor3f(illuminationRed, illuminationGreen, illuminationBlue);
-                    gl.glColor3d(finalIlRed, finalIl1Green, finalIl2Blue);
 
                     // Multiply Matrix T with each of the 3 Vectors
                     Vec4 firstM = matrixT.mul_(new Vec4(firstVector, 1));
                     Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
                     Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
 
+                    gl.glColor3d(vec1Red, vec1Green, vec1Blue);
                     gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
+                    gl.glColor3d(vec2Red, vec2Green, vec2Blue);
                     gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
+                    gl.glColor3d(vec3Red, vec3Green, vec3Blue);
                     gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
 
                     gl.glEnd();
@@ -324,7 +319,7 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
                 double avgNormV1Y = abcdNormalValueY / faceValue.size();
                 double avgNormV1Z = abcdNormalValueZ / faceValue.size();
                 String s = "s";
-                return new Vec3(avgNormV1X, avgNormV1Y, avgNormV1Z);
+                return new Vec3(avgNormV1X, avgNormV1Y, avgNormV1Z).normalize_();
             }
             String s = "s";
         }
