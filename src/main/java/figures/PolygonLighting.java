@@ -1,4 +1,4 @@
-package lab7;
+package figures;
 
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;

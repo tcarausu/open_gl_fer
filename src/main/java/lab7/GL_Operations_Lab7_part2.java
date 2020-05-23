@@ -22,7 +22,7 @@ import static gl_4.GL_Operations_Lab4_Ex1.setupVectorsAndTriangles;
 import static gl_5.GL_Operations_Lab5_Ex1.TandGs;
 import static java.lang.StrictMath.pow;
 
-public class GL_Operations_Lab7 implements GLEventListener {
+public class GL_Operations_Lab7_part2 implements GLEventListener {
     private static float IaRed, IaGreen, IaBlue;
     private static float IdRed, IdGreen, IdBlue;
     private static float IrRed, IrGreen, IrBlue;
@@ -65,18 +65,6 @@ public class GL_Operations_Lab7 implements GLEventListener {
         viewWithEye(gl);
 
 
-//
-//        // weak RED ambient
-//        float[] ambientLight = {0.1f, 0.f, 0.f, 0f};
-//        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, ambientLight, 0);
-//        // multicolor diffuse
-//        float[] diffuseLight = {1f, 2f, 1f, 0f};
-//        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, diffuseLight, 0);
-//
-//    /*    // specularLight
-//        float[] specularLight = {0f, 0f, 0f, 1f};
-//        gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_SPECULAR, specularLight, 0);
-//    */
     }
 
     private void coefficientsSetup() {
@@ -174,8 +162,6 @@ public class GL_Operations_Lab7 implements GLEventListener {
     }
 
     public static void viewWithEye(GL2 gl) {
-
-        // MD: not needed anymore. The cube O should be equal to the O which the user sets, example 1,1,3
         cubeO = new Vec3(v3);
 
         Mat4 matrixT = TandGs(cubeO, original_G); //original_G = 0,0,0
@@ -199,57 +185,46 @@ public class GL_Operations_Lab7 implements GLEventListener {
                     //    Draw it
                     ArrayList<Vec3> valueVectors = entry.getValue();
                     // Default Values for the Cube (lab4)
-                    Vec3 firstVector = valueVectors.get(0);
-                    Vec3 secondVector = valueVectors.get(1);
-                    Vec3 thirdVector = valueVectors.get(2);
-
-                    Vec3 centerOfPolygon = getCentralPoint(firstVector, secondVector, thirdVector);
-
-                    // Multiply Matrix T with each of the 3 Vectors
-                    Vec4 firstM = matrixT.mul_(new Vec4(firstVector, 1));
-                    Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
-                    Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
-
-
-//                    Vec3 normal = new Vec3(equation.getA(), equation.getB(), equation.getC());
-//                    calculateIntensity(centerOfPolygon, normal);
-                    calculateIntensity(centerOfPolygon, equation.getNormal());
-
                     gl.glBegin(gl.GL_POLYGON);
-
-                    //TODO here before each vertex call the gl.color method to set the colour for each
-                    //vertex. In this case it will be same for each vertex
-
-//                    gl.glColor3f(0.0f, 0.0f, 1.0f);
-                    System.out.println("il " + illuminationRed);
+                    //MD> main difference will be here. you need to find all polygons
+                    //which contain first vector. After you do this, you calculate the
+                    //average of the normals for these polygons and then you need
+                    //to pass that average to the calculate intensiti, and use this intensity
+                    //for the first point.
+                    //then you repeat the entire procedure for the second vector and third vector
+                    //and this is the onlz difference you need to do.
+                     for (Vec3 vector : valueVectors) {
+                    Vec4 vectorM = matrixT.mul_(new Vec4(vector, 1));
+                    calculateIntensity(vector, equation.getNormal());
 
 //                    gl.glColor3f(illuminationRed, 0, 0);
-                    //assuming we use all 3 colors
+//                    //assuming we use all 3 colors
                     gl.glColor3f(illuminationRed, illuminationGreen, illuminationBlue);
+                    gl.glVertex3d(vectorM.x / vectorM.w, vectorM.y / vectorM.w, 0);
 
-                    gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
-                    gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
-                    gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
-
-                    gl.glEnd();
-
-                    gl.glFlush();
                 }
-            }
-        });
+                gl.glEnd();
 
-    }
+                gl.glFlush();
+
+            }
+        }
+    });
+
+}
 
 
     private static void calculateIntensity(Vec3 centralPoint, Vec3 normal) {
         float Igr, Igg, Igb, Idr, Idg, Idb, Isr, Isg, Isb;
 
-        //MD this is ok for ambient
+        //Ambient Component?
         Igr = IaRed * kaRed;
         Igg = IaGreen * kaGreen;
         Igb = IaBlue * kaBlue;
+        //MD this is ok for ambinet
 
-        //TODO  what is the right one from these 3?
+        //TODO        what is the right one from these 3?
+
         //MD it should be lightsource.x - centralpoint.x and so for all components
         Vec3 vectorL = new Vec3(lightSource.x - centralPoint.x, lightSource.y - centralPoint.y, lightSource.z - centralPoint.z);
         //MD after this normalise vectorL!
@@ -357,7 +332,7 @@ public class GL_Operations_Lab7 implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
-        GL_Operations_Lab7 l = new GL_Operations_Lab7();
+        GL_Operations_Lab7_part2 l = new GL_Operations_Lab7_part2();
 
         glcanvas.addGLEventListener(l);
         glcanvas.setSize(700, 700);
