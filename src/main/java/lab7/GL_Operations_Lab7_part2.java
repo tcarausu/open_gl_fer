@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static gl_4.GL_Operations_Lab4_Ex1.setupFacesAdjacentToVector;
 import static gl_4.GL_Operations_Lab4_Ex1.setupVectorsAndTriangles;
 import static gl_5.GL_Operations_Lab5_Ex1.TandGs;
 import static java.lang.StrictMath.pow;
@@ -30,7 +31,6 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
     private static float kaRed, kaGreen, kaBlue;
     private static float kdRed, kdGreen, kdBlue;
     private static float krRed, krGreen, krBlue;
-    private static float ksRed, ksGreen, ksBlue;
 
     private static float illuminationRed, illuminationGreen, illuminationBlue;
 
@@ -45,7 +45,11 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
 //    private static final Vec3 lightVector = new Vec3(4, 5, 3);//MD not needed
 
     private static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new LinkedHashMap<>();
+    private static LinkedHashMap<ArrayList<Vec3>, ABCDEquation> vectorsUsedToMakeABCD = new LinkedHashMap<>();
+    private static LinkedHashMap<Vec3, ABCDEquation> facesAdjacentToVector = new LinkedHashMap<>();
+    private static LinkedHashMap<Vec3, LinkedList<ABCDEquation>> facesAdjacentToEachVector = new LinkedHashMap<>();
     private static final AtomicInteger currentIPosition = new AtomicInteger();
+    private static ArrayList<ABCDEquation> vecABCDEquationsList;
 
     @Override
     public void display(GLAutoDrawable drawable) {
@@ -62,8 +66,9 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
 
 
         //MD: This should all be deleted. You need to implement this
-        viewWithEye(gl);
-
+        LinkedHashMap<Vec3, LinkedList<ABCDEquation>> vectorWithFaces = getVectorWithFaces();
+        viewWithEye(gl, vectorWithFaces);
+        String s = "s";
 
     }
 
@@ -161,7 +166,54 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
         return point3DS;
     }
 
-    public static void viewWithEye(GL2 gl) {
+    public static LinkedHashMap<Vec3, LinkedList<ABCDEquation>> getVectorWithFaces() {
+        LinkedList<ABCDEquation> equationList = new LinkedList<>();
+        LinkedList<Vec3> vec3List = new LinkedList<>();
+
+        //gets all vectors and all equations as 2 different lists
+        vectorsUsedToMakeABCD.forEach((key, value) -> {
+            for (Vec3 vector : key) {
+                if (!vec3List.contains(vector)) {
+                    vec3List.add(vector);
+                }
+            }
+            if (!equationList.contains(value)) {
+                equationList.add(value);
+            }
+            String s = "s";
+
+        });
+
+        vectorsUsedToMakeABCD.forEach((key, value) -> {
+            for (Vec3 vector : key) {
+                if (!facesAdjacentToVector.containsKey(vector)) {
+//                    adds vector if it's not yet present
+                    facesAdjacentToVector.put(vector, value);
+//                    if the face doesn't exist add it
+                    facesAdjacentToEachVector.computeIfAbsent(vector, k -> new LinkedList<>()).add(value);
+                    String s = "s";
+
+                } else {
+                    //   for existing vectors add rest of the faces
+                    if (!facesAdjacentToVector.containsValue(value)) {
+                        facesAdjacentToVector.put(vector, value);
+                    }
+                    //   if the face doesn't exist add it
+                    facesAdjacentToEachVector.computeIfAbsent(vector, k -> new LinkedList<>()).add(value);
+                    String s = "s";
+                }
+                String s = "s";
+            }
+            String s = "s";
+
+        });
+
+        LinkedHashMap<Vec3, LinkedList<ABCDEquation>> usableConnection = new LinkedHashMap<>(facesAdjacentToEachVector);
+        String s = "s";
+        return usableConnection;
+    }
+
+    public static void viewWithEye(GL2 gl, LinkedHashMap<Vec3, LinkedList<ABCDEquation>> vectorWithFaces) {
         cubeO = new Vec3(v3);
 
         Mat4 matrixT = TandGs(cubeO, original_G); //original_G = 0,0,0
@@ -184,8 +236,41 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
                 if (coeff > 0) {
                     //    Draw it
                     ArrayList<Vec3> valueVectors = entry.getValue();
+
                     // Default Values for the Cube (lab4)
-                    gl.glBegin(gl.GL_POLYGON);
+                    Vec3 firstVector = valueVectors.get(0);
+                    Vec3 secondVector = valueVectors.get(1);
+                    Vec3 thirdVector = valueVectors.get(2);
+
+
+                    Vec3 firstNormalizedAvgVec = getNormalValues(vectorWithFaces, firstVector);
+//                    calculateIntensity(firstVector,  equation.getNormal());
+                    calculateIntensity(firstVector, firstNormalizedAvgVec);
+
+                    //   (from what I understood I have to use the red from vec1)
+                    double finalIlRed = illuminationRed;//use this
+                    double finalIlGreen = illuminationGreen;
+                    double finalIlBlue = illuminationBlue;
+
+                    Vec3 secondNormalizedAvgVec = getNormalValues(vectorWithFaces, secondVector);
+//                    calculateIntensity(secondNormalizedAvgVec, equation.getNormal());
+                    calculateIntensity(secondVector, secondNormalizedAvgVec);
+
+                    //   (from what I understood I have to use the green from vec2)
+                    double finalIl1Red = illuminationRed;
+                    double finalIl1Green = illuminationGreen;//use this
+                    double finalIl1Blue = illuminationBlue;
+
+                    Vec3 thirdNormalizedAvgVec = getNormalValues(vectorWithFaces, thirdVector);
+//                    calculateIntensity(thirdNormalizedAvgVec, equation.getNormal());
+                    calculateIntensity(thirdVector, thirdNormalizedAvgVec);
+
+                    //   (from what I understood I have to use the blue from vec3)
+                    double finalIl2Red = illuminationRed;
+                    double finalIl2Green = illuminationGreen;
+                    double finalIl2Blue = illuminationBlue; //use this
+
+
                     //MD> main difference will be here. you need to find all polygons
                     //which contain first vector. After you do this, you calculate the
                     //average of the normals for these polygons and then you need
@@ -193,26 +278,58 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
                     //for the first point.
                     //then you repeat the entire procedure for the second vector and third vector
                     //and this is the onlz difference you need to do.
-                     for (Vec3 vector : valueVectors) {
-                    Vec4 vectorM = matrixT.mul_(new Vec4(vector, 1));
-                    calculateIntensity(vector, equation.getNormal());
 
+
+                    gl.glBegin(gl.GL_POLYGON);
 //                    gl.glColor3f(illuminationRed, 0, 0);
-//                    //assuming we use all 3 colors
+                    //assuming we use all 3 colors
                     gl.glColor3f(illuminationRed, illuminationGreen, illuminationBlue);
-                    gl.glVertex3d(vectorM.x / vectorM.w, vectorM.y / vectorM.w, 0);
+                    gl.glColor3d(finalIlRed, finalIl1Green, finalIl2Blue);
 
+                    // Multiply Matrix T with each of the 3 Vectors
+                    Vec4 firstM = matrixT.mul_(new Vec4(firstVector, 1));
+                    Vec4 secondM = matrixT.mul_(new Vec4(secondVector, 1));
+                    Vec4 thirdM = matrixT.mul_(new Vec4(thirdVector, 1));
+
+                    gl.glVertex3d(firstM.x / firstM.w, firstM.y / firstM.w, 0);
+                    gl.glVertex3d(secondM.x / secondM.w, secondM.y / secondM.w, 0);
+                    gl.glVertex3d(thirdM.x / thirdM.w, thirdM.y / thirdM.w, 0);
+
+                    gl.glEnd();
+
+                    gl.glFlush();
                 }
-                gl.glEnd();
-
-                gl.glFlush();
-
             }
+        });
+
+    }
+
+    private static Vec3 getNormalValues(LinkedHashMap<Vec3, LinkedList<ABCDEquation>> vectorWithFaces, Vec3 testedVector) {
+        double abcdNormalValueX = 0;
+        double abcdNormalValueY = 0;
+        double abcdNormalValueZ = 0;
+
+        for (Map.Entry<Vec3, LinkedList<ABCDEquation>> e : vectorWithFaces.entrySet()) {
+            Vec3 faceKey = e.getKey();
+            //all the faces linked to the vector (some have 4 some 5)
+            LinkedList<ABCDEquation> faceValue = e.getValue();
+            if (faceKey.equals(testedVector)) {
+                for (ABCDEquation eq : faceValue) {
+                    abcdNormalValueX += eq.getNormal().x; //adds all normals
+                    abcdNormalValueY += eq.getNormal().y;
+                    abcdNormalValueZ += eq.getNormal().z;
+                    String s = "s";
+                }
+                double avgNormV1X = abcdNormalValueX / faceValue.size(); //divides the added normals by nr of them
+                double avgNormV1Y = abcdNormalValueY / faceValue.size();
+                double avgNormV1Z = abcdNormalValueZ / faceValue.size();
+                String s = "s";
+                return new Vec3(avgNormV1X, avgNormV1Y, avgNormV1Z);
+            }
+            String s = "s";
         }
-    });
-
-}
-
+        return testedVector;
+    }
 
     private static void calculateIntensity(Vec3 centralPoint, Vec3 normal) {
         float Igr, Igg, Igb, Idr, Idg, Idb, Isr, Isg, Isb;
@@ -320,6 +437,7 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
 
     public static void main(String[] args) throws FileNotFoundException {
         triangleLineWithABCDValues = setupVectorsAndTriangles(new File(Constant.kocka)); // Cube
+        vectorsUsedToMakeABCD = setupFacesAdjacentToVector(new File(Constant.kocka)); // Cube
 
         LinkedList<iPoint3D> point3DS = new LinkedList<>();
         point3DS.add(new iPoint3D(v1.x, v1.y, v1.z));

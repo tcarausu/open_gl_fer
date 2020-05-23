@@ -1,6 +1,5 @@
 package gl_4;
 
-import com.jogamp.opengl.util.FPSAnimator;
 import glm.vec._3.Vec3;
 import utility.ABCDEquation;
 import utility.Constant;
@@ -28,6 +27,8 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
     //setupVariables
 //    private static HashMap<String, ArrayList<Double>> triangleLineWithABCDValues = new HashMap<>();
     private static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> triangleLineWithABCDValues = new LinkedHashMap<>();
+//    private static LinkedHashMap<String, LinkedHashMap<ArrayList<Vec3>, ABCDEquation>> facesAdjacentToVector = new LinkedHashMap<>();
+    private static LinkedHashMap<ArrayList<Vec3>, ABCDEquation> facesAdjacentToVector = new LinkedHashMap<>();
     private static ABCDEquation equation;
     private static List<Vec3> vec3s = new ArrayList<>();
     private static List<Double> elementValues = new ArrayList<>();
@@ -108,7 +109,7 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
 
     }
 
-    public static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>>  setupVectorsAndTriangles(File fileToTest) throws FileNotFoundException {
+    public static LinkedHashMap<String, LinkedHashMap<ABCDEquation, ArrayList<Vec3>>> setupVectorsAndTriangles(File fileToTest) throws FileNotFoundException {
         Scanner sc = new Scanner(fileToTest);
 
         while (sc.hasNext()) {
@@ -184,6 +185,83 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
         return triangleLineWithABCDValues;
     }
 
+    public static  LinkedHashMap<ArrayList<Vec3>, ABCDEquation> setupFacesAdjacentToVector(File fileToTest) throws FileNotFoundException {
+        Scanner sc = new Scanner(fileToTest);
+
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+
+            if (line.startsWith("//") || line.startsWith(" ")
+                    || line.startsWith("#") || line.startsWith("g ")
+                    || line.length() == 0) {
+                continue;
+            }
+
+            if (line.startsWith("v")) {
+                vectorsTopLine = line.split(" ");
+                for (String element : vectorsTopLine) {
+                    if (element.contains("v")) continue;
+                    double elementValue = Double.parseDouble(element);
+                    elementValues.add(elementValue);
+                    if (elementValues.size() % 3 == 0) {
+                        double firstElValueFromF = elementValues.get(counterElements.get());
+                        double sElValueFromF = elementValues.get(counterElements.get() + 1);
+                        double thElValueFromF = elementValues.get(counterElements.get() + 2);
+                        vec3s.add(new Vec3(firstElValueFromF, sElValueFromF, thElValueFromF));
+                        counterElements.getAndAdd(3);
+                    }
+                }
+            }
+            if (line.startsWith("f")) {
+                trianglePointersLine = line.split(" ");
+                for (String element : trianglePointersLine) {
+                    if (element.contains("f")) continue;
+                    double polyValue = Double.parseDouble(element);
+                    polyValues.add(polyValue);
+
+                    LinkedHashMap<ArrayList<Vec3>, ABCDEquation> a_d_eqWithVectors = null;
+                    if (polyValues.size() % 3 == 0) {
+                        int firstPolyValueFromF = (int) polyValues.get(polyElCounter.get()).doubleValue();
+                        int sPolyValueFromF = (int) polyValues.get(polyElCounter.get() + 1).doubleValue();
+                        int thPolyValueFromF = (int) polyValues.get(polyElCounter.get() + 2).doubleValue();
+                        Vec3 firstEdge = vec3s.get(firstPolyValueFromF - 1);
+                        Vec3 secondEdge = vec3s.get(sPolyValueFromF - 1);
+                        Vec3 thirdEdge = vec3s.get(thPolyValueFromF - 1);
+
+                        FaceTriangle faceTriangle = new FaceTriangle(firstEdge, secondEdge, thirdEdge);
+
+                        float x_1 = faceTriangle.getFirstEdge().x;
+                        float y_1 = faceTriangle.getFirstEdge().y;
+                        float z_1 = faceTriangle.getFirstEdge().z;
+
+                        float x_2 = faceTriangle.getSecondEdge().x;
+                        float y_2 = faceTriangle.getSecondEdge().y;
+                        float z_2 = faceTriangle.getSecondEdge().z;
+
+                        float x_3 = faceTriangle.getThirdEdge().x;
+                        float y_3 = faceTriangle.getThirdEdge().y;
+                        float z_3 = faceTriangle.getThirdEdge().z;
+
+                        double A = (y_2 - y_1) * (z_3 - z_1) - (z_2 - z_1) * (y_3 - y_1);
+                        double B = -(x_2 - x_1) * (z_3 - z_1) + (z_2 - z_1) * (x_3 - x_1);
+                        double C = (x_2 - x_1) * (y_3 - y_1) - (y_2 - y_1) * (x_3 - x_1);
+                        double D = -(x_1 * A - y_1 * B - z_1 * C);
+
+                        equation = new ABCDEquation(A, B, C, D);
+
+                        a_d_eqWithVectors = new LinkedHashMap<>();
+                        a_d_eqWithVectors.put(faceTriangle.getEdgeVectors(), equation);
+                        polyElCounter.getAndAdd(3);
+                        facesAdjacentToVector.put(faceTriangle.getEdgeVectors(), equation);
+                    }
+//                    GL_Operations_Lab4_Ex1.facesAdjacentToVector.put(line, a_d_eqWithVectors);
+                }
+
+            }
+        }
+        return facesAdjacentToVector;
+    }
+
     public boolean isInsideOf(Vec3 vertex, ABCDEquation abcdEquation) {
         double a, b, c, d, r;
         float x = vertex.x;
@@ -206,6 +284,10 @@ public class GL_Operations_Lab4_Ex1 implements GLEventListener {
             return true;
 
         return isInside;
+    }
+
+    public static List<Vec3> getVec3s() {
+        return vec3s;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
