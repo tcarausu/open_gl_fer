@@ -344,9 +344,6 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
         Vec3 normNormV = normal.normalize_();
 
 
-        //TODO  select some of them
-        //float cosId = normal.x + vectorL.x + normal.y + vectorL.y + normal.z + vectorL.z;
-        //float cosId = normal.x+normVecL.x + normal.y+normVecL.y + normal.z+normVecL.z;
         float cosId = normNormV.x * normVecL.x + normNormV.y * normVecL.y + normNormV.z * normVecL.z;
 
         //MD: do the dot product: normal.x+vectorL.x + normal.y+vectorL.y + normal.z+vectorL.z
@@ -399,20 +396,9 @@ public class GL_Operations_Lab7_part2 implements GLEventListener {
         Vec3 eyeVec = eye.sub_(center); //the vector from the eye to the center of polygon
 
         eyeVec.normalize_(); // normalise all the vectors!
-//
-//        //MD: if I am not mistaken, you do not need to do this, since you already did this in the upper function, and
-//        //lightV already is a vector
-//        Vec3 lightVec = lightV.sub_(center); // the L vector, as denoted previously
-//        lightVec.normalize_(); //normalise
-
-
-//MD: this seems to be ok
-//        Vec3 r = Vec3.Sub((2 * Vector3.Dot(normal, lightVec)) * normal, lightVec); // r is the reflected vector
+        //MD: this seems to be ok
         Vec3 dotted = normal.mul(normal.dot(lightV)).mul(2);
         Vec3 r = dotted.sub_(lightV); // r is the reflected vector
-//        Vec3 r = dotted.sub_(lightVec); // r is the reflected vector
-
-// here you can see the equation for it as well https://www.fabrizioduroni.it/2017/08/25/how-to-calculate-reflection-vector.html
 
         r.normalize_();
         return r;
