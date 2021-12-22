@@ -1,7 +1,10 @@
 package figures;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
+
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
 public class ICGVector implements GLEventListener {

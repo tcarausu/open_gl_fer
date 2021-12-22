@@ -7,8 +7,11 @@ import utility.ABCDEquation;
 import utility.Constant;
 import utility.iPoint3D;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;

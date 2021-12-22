@@ -2,11 +2,17 @@ package lab8;
 
 import utility.MandaComplex;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+//import static javax.media.opengl.GL.GL_POINTS;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
+
 import javax.swing.*;
 
-import static javax.media.opengl.GL.GL_POINTS;
+import static com.jogamp.opengl.GL.GL_POINTS;
+
 
 public class GL_Operation_Lab8_book implements GLEventListener {
     private static double xmin = 0;

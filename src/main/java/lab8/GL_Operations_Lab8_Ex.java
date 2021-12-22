@@ -3,8 +3,12 @@ package lab8;
 import utility.MandaComplex;
 import utility.MandelbrotPlane;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
+
 import javax.swing.*;
 
 public class GL_Operations_Lab8_Ex implements GLEventListener {
