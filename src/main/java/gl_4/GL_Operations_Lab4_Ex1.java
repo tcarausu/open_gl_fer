@@ -5,8 +5,12 @@ import utility.ABCDEquation;
 import utility.Constant;
 import utility.FaceTriangle;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+//import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -15,7 +19,8 @@ import java.util.List;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+import static com.jogamp.opengl.GL.GL_COLOR_BUFFER_BIT;
+
 
 public class GL_Operations_Lab4_Ex1 implements GLEventListener {
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

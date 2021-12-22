@@ -5,11 +5,16 @@ import glm.mat._4.Mat4;
 import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+//import static javax.media.opengl.GL.GL_TRIANGLES;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import javax.swing.*;
 
-import static javax.media.opengl.GL.GL_TRIANGLES;
+import static com.jogamp.opengl.GL.GL_TRIANGLES;
+
 
 public class Overlapping_triangles implements GLEventListener {
     @Override

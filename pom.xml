@@ -7,61 +7,67 @@
     <groupId>org.example</groupId>
     <artifactId>open_gl</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <source>8</source>-->
+<!--                    <target>8</target>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+<!--    <dependency>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-compiler-plugin</artifactId>-->
+<!--        <version>3.8.1</version>-->
+<!--    </dependency>-->
     <dependencies>
         <!--Main-->
         <dependency>
             <groupId>org.jogamp.jogl</groupId>
             <artifactId>jogl-all-main</artifactId>
-            <version>2.0.2</version>
+            <version>2.3.2</version>
         </dependency>
         <!--Gluegen-->
         <dependency>
             <groupId>org.jogamp.gluegen</groupId>
             <artifactId>gluegen-rt-main</artifactId>
-            <version>2.0.2</version>
+            <version>2.3.2</version>
         </dependency>
         <!--Jocl-->
         <dependency>
             <groupId>org.jogamp.jocl</groupId>
             <artifactId>jocl-main</artifactId>
-            <version>2.0.2</version>
+            <version>2.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.jogamp.jocl</groupId>
             <artifactId>jocl</artifactId>
-            <version>2.0.2</version>
+            <version>2.3.2</version>
         </dependency>
         <!--Jooq-->
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>joou</artifactId>
-            <version>0.9.1</version>
+            <version>0.9.4</version>
         </dependency>
         <!--newt-->
         <!-- https://mvnrepository.com/artifact/org.jogamp.jogl/newt -->
         <dependency>
             <groupId>org.jogamp.jogl</groupId>
             <artifactId>newt</artifactId>
-            <version>2.0.2</version>
+            <version>2.3.2</version>
         </dependency>
         <!--joal-->
         <dependency>
             <groupId>org.jogamp.joal</groupId>
             <artifactId>joal</artifactId>
-            <version>2.0.2</version>
+            <version>2.3.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.java-graphics/glm -->
         <dependency>
@@ -86,13 +92,13 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.1.0</version>
+            <version>7.4.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>compile</scope>
         </dependency>
 
@@ -105,9 +111,26 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+<!--    <dependency>-->
+<!--        <groupId>com.google.guava</groupId>-->
+<!--        <artifactId>guava</artifactId>-->
+<!--        <version>21.0</version>-->
+<!--    </dependency>-->
+    <!-- https://mvnrepository.com/artifact/net.sourceforge.streamsupport/streamsupport-atomic -->
+<!--    <dependency>-->
+<!--        <groupId>net.sourceforge.streamsupport</groupId>-->
+<!--        <artifactId>streamsupport-atomic</artifactId>-->
+<!--        <version>1.4</version>-->
+<!--    </dependency>-->
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
 </project>

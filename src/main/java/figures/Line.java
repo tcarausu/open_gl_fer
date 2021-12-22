@@ -5,9 +5,12 @@ import glm.mat._4.Mat4;
 import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.fixedfunc.GLMatrixFunc;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.fixedfunc.GLMatrixFunc;
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
+
 import javax.swing.*;
 import java.awt.*;
 

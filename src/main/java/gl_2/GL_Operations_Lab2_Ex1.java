@@ -1,14 +1,17 @@
 package gl_2;
 
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import glm.vec._2.Vec2;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
 
-import static java.lang.StrictMath.abs;
-import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+//import static java.lang.StrictMath.abs;
+//import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+import static com.jogamp.opengl.GL.GL_COLOR_BUFFER_BIT;
 import static utility.Bresenham_Utility.plotLine;
 
 public class GL_Operations_Lab2_Ex1 implements GLEventListener {

@@ -2,8 +2,12 @@ package utility;
 
 import glm.vec._3.Vec3;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GL2;
+//import javax.media.opengl.GL;
+//import javax.media.opengl.GL2;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;

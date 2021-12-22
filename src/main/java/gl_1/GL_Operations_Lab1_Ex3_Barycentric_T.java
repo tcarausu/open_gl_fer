@@ -1,6 +1,8 @@
 package gl_1;
 
-import com.google.common.util.concurrent.AtomicDouble;
+//import com.google.common.util.concurrent.AtomicDouble;
+
+
 import glm.mat._3.Mat3;
 import glm.vec._3.Vec3;
 
@@ -23,10 +25,10 @@ public class GL_Operations_Lab1_Ex3_Barycentric_T {
     );
     private static double[] valueToVector = new double[0];
 
-    private static AtomicDouble x = new AtomicDouble();
-    private static AtomicDouble y = new AtomicDouble();
-    private static AtomicDouble z = new AtomicDouble();
-    private static AtomicDouble res = new AtomicDouble();
+//    private static AtomicDouble x = new AtomicDouble();
+//    private static AtomicDouble y = new AtomicDouble();
+//    private static AtomicDouble z = new AtomicDouble();
+//    private static AtomicDouble res = new AtomicDouble();
 
     private static float[][] matrix = {};
 
@@ -90,16 +92,16 @@ public class GL_Operations_Lab1_Ex3_Barycentric_T {
     private static float[][] retrieveMatrix(int chunk, double[] values) {
         for (int i = 0; i < values.length; i += chunk) {
             double[] arrayV = Arrays.copyOfRange(values, i, Math.min(values.length, i + chunk));
-            x.getAndAdd(arrayV[0]);
-            y.getAndAdd(arrayV[1]);
-            z.getAndAdd(arrayV[2]);
-
-            float[][] row = {
-                    {(float) x.get(), (float) y.get(), (float) z.get()}
-            };
+//            x.getAndAdd(arrayV[0]);
+//            y.getAndAdd(arrayV[1]);
+//            z.getAndAdd(arrayV[2]);
+//
+//            float[][] row = {
+//                    {(float) x.get(), (float) y.get(), (float) z.get()}
+//            };
             valueReset();
             if (matrix.length < 5) {
-                matrix = append(matrix, row);
+//                matrix = append(matrix, row);
             }
         }
         return matrix;
@@ -120,9 +122,9 @@ public class GL_Operations_Lab1_Ex3_Barycentric_T {
     }
 
     private static void valueReset() {
-        x.set(0);
-        y.set(0);
-        z.set(0);
-        res.set(0);
+//        x.set(0);
+//        y.set(0);
+//        z.set(0);
+//        res.set(0);
     }
 }

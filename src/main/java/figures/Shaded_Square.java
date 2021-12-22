@@ -5,12 +5,17 @@ import glm.mat._4.Mat4;
 import glm.vec._2.Vec2;
 import glm.vec._3.Vec3;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+//import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
+
 import javax.swing.*;
 
+import static com.jogamp.opengl.GL.GL_COLOR_BUFFER_BIT;
 import static com.jogamp.opengl.util.ImmModeSink.GL_POLYGON;
-import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
 
 public class Shaded_Square implements GLEventListener {
     @Override

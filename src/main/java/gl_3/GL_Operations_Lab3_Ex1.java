@@ -5,8 +5,12 @@ import glm.vec._2.Vec2;
 import utility.iPoint2D;
 import utility.iPolyElement;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+//import javax.media.opengl.*;
+//import javax.media.opengl.awt.GLCanvas;
+//import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -14,7 +18,8 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+import static com.jogamp.opengl.GL.GL_COLOR_BUFFER_BIT;
+
 
 public class GL_Operations_Lab3_Ex1 implements GLEventListener {
     private static final Vec2 V1 = new Vec2(50, 200);
@@ -247,7 +252,7 @@ public class GL_Operations_Lab3_Ex1 implements GLEventListener {
         //adding canvas to frame
         frame.getContentPane().add(glcanvas);
         frame.setSize(frame.getContentPane().getPreferredSize());
-        frame.setVisible(true);
+//        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         iPolyElements.add(new iPolyElement(new iPoint2D(V1.x, V1.y)));
